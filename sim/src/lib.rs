@@ -7,6 +7,8 @@
 //! - crossovers: Linkwitz-Riley 4th order, complex summation (phase-correct)
 //! - far field, horizontal plane only (vertical lobing is not modelled)
 
+mod enclosure;
+
 use std::f64::consts::PI;
 
 pub const MAX_WAYS: usize = 5;

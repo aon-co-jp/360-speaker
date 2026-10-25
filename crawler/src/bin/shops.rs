@@ -99,6 +99,16 @@ fn fetch_browser(url: &str) -> Option<String> {
     (s.len() > 500).then_some(s)
 }
 
+/// 接続できなかった理由(403=自動アクセス拒否 など)
+fn why_unreachable(url: &str) -> String {
+    match ureq::get(url).set("User-Agent", UA).timeout(std::time::Duration::from_secs(20)).call() {
+        Err(ureq::Error::Status(c, _)) if c == 403 || c == 429 => format!("自動アクセスを拒否された({c})。回避はしない"),
+        Err(ureq::Error::Status(c, _)) => format!("HTTP {c}"),
+        Err(_) => "接続できない(タイムアウト等)".into(),
+        Ok(_) => "検索の仕組みを自動で見つけられない".into(),
+    }
+}
+
 fn get(url: &str, browser: bool) -> Option<String> { if browser { fetch_browser(url) } else { fetch_http(url) } }
 
 /// (href, 表示テキスト)
@@ -131,7 +141,8 @@ fn distinct_hrefs(a: &[(String, String)]) -> usize { a.iter().map(|x| x.0.as_str
 /// ブランド名を含む「別々の商品リンク」の数
 fn brand_links(a: &[(String, String)], brand: &str) -> usize {
     let b = brand.to_lowercase();
-    a.iter().filter(|(h, t)| h.to_lowercase().contains(&b) || t.to_lowercase().contains(&b)).map(|x| x.0.as_str()).collect::<BTreeSet<_>>().len()
+    // メニュー等のhref一致を数えないよう、リンクの表示テキストにブランド名があるものだけを数える
+    a.iter().filter(|(_, t)| t.to_lowercase().contains(&b)).map(|x| x.0.as_str()).collect::<BTreeSet<_>>().len()
 }
 
 fn join_url(base: &str, rel: &str) -> String {
@@ -277,7 +288,7 @@ fn main() {
     for shop in &seed.shops {
         let mut so = ShopOut { name: shop.name.clone(), region: shop.region.clone(), url: shop.url.clone(), status: String::new(), pattern: String::new(), browser: false, brands: BTreeMap::new() };
         match find_pattern(shop, &mut learned, &now) {
-            None => so.status = if fetch_http(&shop.url).is_none() { "接続できない".into() } else { "検索の仕組みを自動で見つけられない".into() },
+            None => so.status = why_unreachable(&shop.url),
             Some((pattern, browser)) => {
                 so.status = "検索を確認".into();
                 so.pattern = pattern.clone();
@@ -290,7 +301,10 @@ fn main() {
                         let a = anchors(&body);
                         let (n, base) = (brand_links(&a, brand), brand_links(&ctl, brand));
                         if n >= base + 3 {
-                            let score = ai_score(&visible_text(&body));
+                            // ページ先頭(ヘッダー)ではなく、ブランド名を含む商品リンクの題名で「ユニット販売らしさ」を採点する
+                            let b = brand.to_lowercase();
+                            let titles: Vec<String> = a.iter().filter(|(_, t)| t.to_lowercase().contains(&b)).take(8).map(|x| x.1.clone()).collect();
+                            let score = ai_score(&titles.join(" / "));
                             // open-cuda(BERT)の採点が取れた場合は、極端に低いものを除外する
                             if score.map(|s| s >= 0.5).unwrap_or(true) {
                                 so.brands.insert(brand.clone(), Evidence { checked: now.clone(), url, links: n - base, ai_score: score });

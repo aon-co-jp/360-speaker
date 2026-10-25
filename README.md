@@ -65,8 +65,11 @@ copy target\wasm32-unknown-unknown\release\speaker360_sim.wasm ..\web\sim.wasm
 | [Willy's HiFi](https://willys-hifi.com/) | Scan-Speak | 海外発送の可否・送料は要確認 |
 | [Toutlehautparleur(フランス)](https://en.toutlehautparleur.com/) | FOSTEX | 海外発送の可否・送料は要確認 |
 | [Lautsprechershop.de(ドイツ)](https://lautsprechershop.de/hifi/fostex_en.htm) | FOSTEX | 海外発送の可否・送料は要確認 |
+| [一品館(日本)](https://e.ippinkan.com/shopbrand/BC015400/) | TAD | ユーザー提供。TADのブランドページ |
+| [コイズミ無線(日本)](https://shop.koizumi-musen.com/?mode=grp&gid=2727983) | TAD | ユーザー提供。TADのグループページ |
+| [ジョーシンweb(日本)](https://joshinweb.jp/audio/5033.html?MKN=TAD) | TAD | ユーザー提供。TADのメーカー絞り込みページ |
 
-Tang Band、Peerless/Vifa、Accuton、Monacor、Eton、Eminence、Celestion、Beyma、B&C Speakers、TAD、Tannoy、パイオニア、Focal(単品)は、今回の検索では取扱店を確認できませんでした(外部検索リンクを使ってください)。 在庫・価格・販売の可否は各サイトで必ず確認してください。
+Tang Band、Peerless/Vifa、Accuton、Monacor、Eton、Eminence、Celestion、Beyma、B&C Speakers、Tannoy、パイオニア、Focal(単品)は、今回の検索では取扱店を確認できませんでした(調べ不足の可能性があります。TADは追加の指摘で取扱店が見つかりました)(外部検索リンクを使ってください)。 在庫・価格・販売の可否は各サイトで必ず確認してください。
 
 **他ブランドのスピーカーユニット(外部検索リンク)**
 

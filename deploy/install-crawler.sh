@@ -12,6 +12,7 @@ After=network-online.target
 Type=oneshot
 WorkingDirectory=/root/easy-web.tokyo/360-speaker
 ExecStart=/root/easy-web.tokyo/360-speaker/crawler/target/release/materials-crawler /root/easy-web.tokyo/360-speaker/web/data/materials-candidates.json
+ExecStart=/root/easy-web.tokyo/360-speaker/crawler/target/release/shops /root/easy-web.tokyo/360-speaker/crawler/shops-seed.json /root/easy-web.tokyo/360-speaker/web/data/shops-confirmed.json
 EOF
 cat > /etc/systemd/system/360-speaker-crawl.timer <<'EOF'
 [Unit]

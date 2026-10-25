@@ -1,0 +1,16 @@
+{
+  "note": "通販サイトの候補(種)。毎朝 shops バイナリが、サイト内検索ページにブランド名で問い合わせ、結果ページにブランド名とユニット関連語が出たものだけを「確認済み」にする。JavaScript描画のサイトは確認できない場合がある。",
+  "brands": ["Scan-Speak", "SB Acoustics", "SEAS", "Dayton Audio", "Tang Band", "Peerless", "Accuton", "Visaton", "Monacor", "Eton", "Eminence", "Celestion", "Beyma", "B&C", "Radian", "Focal", "TAD", "Tannoy", "FOSTEX", "BlieSMa", "JBL"],
+  "shops": [
+    {"name": "ヨドバシ.com", "region": "日本", "url": "https://www.yodobashi.com/", "search": "https://www.yodobashi.com/?word={q}"},
+    {"name": "楽天市場", "region": "日本", "url": "https://www.rakuten.co.jp/", "search": "https://search.rakuten.co.jp/search/mall/{q}+%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88/"},
+    {"name": "RSコンポーネンツ", "region": "日本", "url": "https://jp.rs-online.com/", "search": "https://jp.rs-online.com/web/c/computing-peripherals/audio-video/speaker-drivers/?searchTerm={q}"},
+    {"name": "FOSTEX公式ストア", "region": "日本", "url": "https://store.fostex.jp/", "search": "https://store.fostex.jp/view/search?search%5Bkeyword%5D={q}"},
+    {"name": "Falcon Acoustics", "region": "英国", "url": "https://www.falconacoustics.co.uk/", "search": "https://www.falconacoustics.co.uk/catalogsearch/result/?q={q}"},
+    {"name": "Masori", "region": "ドイツ", "url": "https://masori.de/en/", "search": "https://masori.de/en/search?q={q}"},
+    {"name": "Sound Imports", "region": "欧州", "url": "https://www.soundimports.eu/", "search": "https://www.soundimports.eu/en/search?q={q}"},
+    {"name": "Willy's HiFi", "region": "海外", "url": "https://willys-hifi.com/", "search": "https://willys-hifi.com/search?q={q}"},
+    {"name": "Toutlehautparleur", "region": "フランス", "url": "https://en.toutlehautparleur.com/", "search": "https://en.toutlehautparleur.com/search?controller=search&s={q}"},
+    {"name": "Lautsprechershop.de", "region": "ドイツ", "url": "https://lautsprechershop.de/", "search": "https://lautsprechershop.de/search.php?q={q}"}
+  ]
+}

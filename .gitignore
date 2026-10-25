@@ -1,2 +1,4 @@
-sim/target/
+﻿sim/target/
+crawler/target/
+web/data/
 *.prof

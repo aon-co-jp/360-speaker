@@ -81,9 +81,9 @@ fn main() {
             let url = shop.search.replace("{q}", &enc(brand));
             if let Some(body) = fetch(&url) {
                 let low = body.to_lowercase();
-                // ブランド名の出現が複数回あり、ユニット関連語も含む場合のみ確認済み
+                // 検索語のエコー(数回)では通らないよう、ブランド名が12回以上出て、ユニット関連語も含む場合のみ確認済み
                 let hits = low.matches(&brand.to_lowercase()).count();
-                if hits >= 3 && KEYWORDS.iter().any(|k| low.contains(k)) {
+                if hits >= 12 && KEYWORDS.iter().any(|k| low.contains(k)) {
                     so.brands.insert(brand.clone(), Evidence { checked: now.clone(), url });
                 }
             }

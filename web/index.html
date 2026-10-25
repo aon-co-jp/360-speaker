@@ -19,6 +19,10 @@ table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--bd
  <label>WAY数 <select id="ways"><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></label>
  <label>マスター(左右連動) <input id="master" type="range" min="-30" max="6" value="0" step="0.5"> <span id="mv">0 dB</span></label>
  <label>下限周波数(風速評価) Hz <input id="flow" type="number" value="40" style="width:4em"></label>
+ <label>分割次数 <select id="ord"><option value="1">LR2(12dB/oct)</option><option value="2" selected>LR4(24dB/oct)</option><option value="3">LR6(36dB/oct)</option><option value="4">LR8(48dB/oct)</option></select></label>
+ <label>反射円錐の形 <select id="shape"><option value="0">直線円錐</option><option value="20">曲面(凸・拡散±20°)</option><option value="40">曲面(凸・拡散±40°)</option><option value="-20">曲面(凹・収束±20°)</option></select></label>
+ <label><input id="taper" type="checkbox"> 開口の周辺漸減(Hann)</label>
+ <label>WAY3-5間隔倍率 <input id="sp" type="number" step="0.05" value="1" style="width:4em"></label>
 </div>
 <h2>各WAYの構造・ボリューム(下→上)</h2>
 <div id="ctl"></div>
@@ -26,7 +30,7 @@ table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--bd
  <div><h2>垂直面(仰角)×周波数(dB)</h2><canvas id="hm" width="600" height="320"></canvas></div>
  <div><h2>垂直極座標 <span id="pf"></span> <input id="fs" type="range" min="0" max="199" value="100"></h2><canvas id="po" width="320" height="320"></canvas></div>
 </div>
-<h2>周波数特性(青=水平0°、橙=仰角±30°内の最大偏差)</h2><canvas id="fr" width="900" height="240"></canvas>
+<h2>周波数特性(青=水平0°、橙=仰角±30°内のばらつき)</h2><canvas id="fr" width="900" height="240"></canvas>
 <p class="note" id="sum"></p>
 <h2>エンクロージャー設計(T/Sパラメーター・箱・ポート・壁材)<span class="note">(ユニット値は仮定の代表値。実部品のデータシートで置換)</span></h2>
 <div class="row">
@@ -64,7 +68,7 @@ table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--bd
 <table id="cost"></table><p class="note" id="cv"></p>
 <script>
 const $=id=>document.getElementById(id);
-const XO={5:[60,600,4200,13200],4:[150,1000,6000],3:[300,3000],2:[2500],1:[]};
+const XO={5:[150,580,4400,14500],4:[150,1000,6000],3:[300,3000],2:[2500],1:[]};
 // 下→上。k: s=対向2個+隙間(スリット) / r=上向き+吊り下げ円錐
 const WAYD=[{n:'WAY1 超低音',k:'s',z:260,p:{rt:80,g:20,rm:190,sd:220,xm:10,cnt:2},v:0},
  {n:'WAY2 低音',k:'s',z:606,p:{rt:55,g:12,rm:100,sd:85,xm:5,cnt:2},v:0},
@@ -86,7 +90,7 @@ function build(){n=+$('ways').value;xo=XO[n].slice();dv=WAYD.slice(0,n).map(d=>J
   else if(t.dataset.x!=null)xo[t.dataset.x]=+t.value;else if(t.dataset.k=='z')d.z=+t.value;else d.p[t.dataset.k]=+t.value;run()};
  run()}
 function run(){if(!W)return;const f0=+$('flow').value||40,ms=+$('master').value;
- const vin=new Float64Array(W.memory.buffer,W.v_in_ptr(),20),m=new Float64Array(W.memory.buffer,W.in_ptr(),24);
+ const vin=new Float64Array(W.memory.buffer,W.v2_in_ptr(),44),m=new Float64Array(W.memory.buffer,W.in_ptr(),24);
  for(let i=0;i<4;i++)m[20+i]=xo[i]||1e5;
  dv.forEach((d,i)=>{const p=d.p;let H,phi0,txt;const w=[];
   if(d.k=='s'){const si=new Float64Array(W.memory.buffer,W.slot_in_ptr(),9);si.set([p.cnt,p.sd,p.xm,p.rt,p.g,p.rm,p.g*1.5,f0,20]);W.slot();const o=new Float64Array(W.memory.buffer,W.slot_out_ptr(),8).slice();
@@ -98,8 +102,8 @@ function run(){if(!W)return;const f0=+$('flow').value||40,ms=+$('master').value;
    txt='放射仰角 '+o[0].toFixed(0)+'° / 出口面積 '+o[1].toFixed(1)+'cm² / 圧縮比 '+o[2].toFixed(2)+' / 風速 '+o[3].toFixed(0)+'m/s / 円錐高さ '+o[5].toFixed(0)+'mm / 制御下限 '+Math.round(o[6])+'Hz';
    if(o[2]>1.6)w.push('圧縮比大: 縁の隙間を広げる');if(Math.abs(o[0])>8)w.push('半頂角45°で水平放射(今は'+o[0].toFixed(0)+'°)');if(o[6]>(xo[i-1]||0))w.push('円錐半径が小さく、帯域下限で拡散制御が効かない')}
   if(w.length)txt+=' ⚠ '+w.join(' / ');
-  vin[i*4]=d.z/1000;vin[i*4+1]=H;vin[i*4+2]=phi0;vin[i*4+3]=d.v+ms;$('in'+i).innerHTML='<br>'+txt;});
- const len=W.vertical(n,NF,NE,FLO,FHI);data=new Float64Array(W.memory.buffer,W.v_out_ptr(),len).slice();draw()}
+  const zr=dv.length>2?dv[2].z:0,zz=(d.k=='r'&&i>2)?zr+(d.z-zr)*(+$('sp').value||1):d.z;vin[i*8]=zz/1000;vin[i*8+1]=H;vin[i*8+2]=phi0;vin[i*8+3]=d.v+ms;vin[i*8+4]=d.k=='r'?+$('shape').value:0;vin[i*8+5]=d.k=='r'&&$('taper').checked?1:0;$('in'+i).innerHTML='<br>'+txt;});
+ vin[40]=+$('ord').value;vin[41]=9;const len=W.vertical2(n,NF,NE,FLO,FHI);data=new Float64Array(W.memory.buffer,W.v2_out_ptr(),len).slice();draw()}
 function col(v){const t=Math.max(0,Math.min(1,(v+40)/50));return 'hsl('+(240-240*t)+',80%,'+(25+30*t)+'%)'}
 function draw(){const fg=getComputedStyle(document.body).color;
  let c=$('hm').getContext('2d'),w=600,h=320;for(let f=0;f<NF;f++)for(let a=0;a<NE;a++){c.fillStyle=col(data[f*NE+a]);c.fillRect(f*w/NF,(NE-1-a)*h/NE,w/NF+1,h/NE+1)}
@@ -112,8 +116,8 @@ function draw(){const fg=getComputedStyle(document.body).color;
  const y=v=>240-(v+50)/70*240;c.strokeStyle='#8888';c.fillStyle=fg;for(let d=-40;d<=10;d+=10){c.beginPath();c.moveTo(0,y(d));c.lineTo(900,y(d));c.stroke();c.fillText(d+'dB',2,y(d)-2)}
  const e0=Math.round((NE-1)/2),lo=Math.round((NE-1)*(90-30)/180),hi=Math.round((NE-1)*(90+30)/180);
  c.strokeStyle='#2a6df4';c.beginPath();for(let f=0;f<NF;f++){const x=f*900/NF;f?c.lineTo(x,y(data[f*NE+e0])):c.moveTo(x,y(data[f*NE+e0]))}c.stroke();
- c.strokeStyle='#e8851a';c.beginPath();for(let f=0;f<NF;f++){let a=-99,b=99;for(let k=lo;k<=hi;k++){a=Math.max(a,data[f*NE+k]);b=Math.min(b,data[f*NE+k])}const dev=a-b;const fr=FLO*Math.pow(FHI/FLO,f/(NF-1));if(fr>=100&&fr<=12000&&dev>worst){worst=dev;wf=fr}const x=f*900/NF,yy=240-Math.min(dev,30)/30*240;f?c.lineTo(x,yy):c.moveTo(x,yy)}c.stroke();
- $('sum').textContent='100Hz〜12kHzの仰角±30°(聴く高さ)内の偏差の最悪値: '+worst.toFixed(1)+' dB @ '+Math.round(wf)+' Hz。小さいほど縦方向が均一。(橙の縦軸は0〜30dB。水平方向は円対称で全方位同一)';
+ c.strokeStyle='#e8851a';c.beginPath();for(let f=0;f<NF;f++){const arr=[];for(let k=lo;k<=hi;k++)arr.push(data[f*NE+k]);arr.sort((x,y)=>x-y);const dev=arr[Math.floor(arr.length*0.9)]-arr[Math.floor(arr.length*0.1)];const fr=FLO*Math.pow(FHI/FLO,f/(NF-1));if(fr>=100&&fr<=12000&&dev>worst){worst=dev;wf=fr}const x=f*900/NF,yy=240-Math.min(dev,30)/30*240;f?c.lineTo(x,yy):c.moveTo(x,yy)}c.stroke();
+ $('sum').textContent='100Hz〜12kHzの仰角±30°(聴く高さ)内のばらつき(10〜90パーセンタイル幅)の最悪値: '+worst.toFixed(1)+' dB @ '+Math.round(wf)+' Hz。小さいほど縦方向が均一。(橙=上記ばらつき、縦軸0〜30dB。狭い深いノッチは含めない。水平方向は円対称で全方位同一)';
  cost()}
 const VOL={'アナログ ステップ式(目盛り付きロータリー)':1800,'モーター付き可変抵抗(リモコン対応)':1500,'デジタル(エンコーダ+ボリュームIC/DSP)':400,'ハイブリッド(エンコーダ+アナログ減衰IC/リレー、目盛りリング付き) 推奨案':1100};
 function cost(){const qty=+$('qty').value,pair=+$('pair').value,price=+$('price').value,base=+$('base').value,fixed=+$('fixed').value,ext=$('mode').value=='ext',ampc=+$('ampc').value,term=+$('term').value,pch=+$('prechas').value,pp=+$('preprice').value;
@@ -154,7 +158,7 @@ function enc(){if(!W||!W.enc_in_ptr)return;
  $('eo').innerHTML='有効容積 '+vb.toFixed(1)+'L(ユニット2個で '+($('vas').value*2)+'L相当のVas) / '+(vented?'Fb '+o[10].toFixed(1)+'Hz, ポート長 '+o[3].toFixed(0)+'mm(径'+$('epd').value+'mm), ポート風速(Xmax時) '+o[4].toFixed(1)+' m/s':'Fc '+o[1].toFixed(1)+'Hz, Qtc '+o[2].toFixed(2))+' / F3 '+o[0].toFixed(1)+'Hz / ピーク '+o[6].toFixed(1)+'dB / Xmax制限SPL@F3 約'+o[8].toFixed(0)+'dB(1m)<br>壁: リング共振 '+Math.round(ring)+'Hz / 壁たわみ(対空気) '+comp.toFixed(1)+'% / 壁質量 '+mass.toFixed(1)+'kg'+(warn.length?'<br><b style="color:#c0392b">⚠ '+warn.join('<br>⚠ ')+'</b>':'<br><b style="color:#2a8a4a">主な警告なし(ただし簡易モデル。実機測定が必要)</b>')}
 ['ek','eid','eh','epd','efb','fs0','qts','vas','sd','xm','mat','tw'].forEach(i=>$(i).oninput=enc);$('ew').onchange=eload;
 $('master').oninput=()=>{$('mv').textContent=$('master').value+' dB';run()};
-$('ways').onchange=build;$('flow').oninput=run;$('fs').oninput=()=>data&&draw();
+$('ways').onchange=build;$('flow').oninput=run;['ord','shape','taper','sp'].forEach(i=>$(i).oninput=run);$('fs').oninput=()=>data&&draw();
 ['qty','pair','price','base','fixed','mode','ampc','term','prechas','preprice','tspl','sens'].forEach(i=>$(i).oninput=()=>data&&cost());
 fetch('sim.wasm').then(r=>r.arrayBuffer()).then(b=>WebAssembly.instantiate(b)).then(r=>{W=r.instance.exports;build();eload()});
 </script></body></html>

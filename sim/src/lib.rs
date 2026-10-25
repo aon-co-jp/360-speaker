@@ -168,3 +168,76 @@ pub extern "C" fn vertical(ways: usize, n_freq: usize, n_el: usize, f_lo: f64, f
     }
     out.len()
 }
+
+// ---- 拡張垂直モデル: 分割次数・開口の重み・曲面円錐(放射角の広がり) ----
+// per way (8): z_m, H_m, phi0_deg, gain_db, spread_deg, taper(0=一様,1=Hann), 0, 0 ; globals at [40]: order m (1..4 => LR2/4/6/8), nsub
+static mut V2IN: [f64; MAX_WAYS * 8 + 4] = [0.0; MAX_WAYS * 8 + 4];
+static mut V2OUT: Vec<f64> = Vec::new();
+#[no_mangle]
+pub extern "C" fn v2_in_ptr() -> *mut f64 { std::ptr::addr_of_mut!(V2IN) as *mut f64 }
+#[no_mangle]
+pub extern "C" fn v2_out_ptr() -> *const f64 { unsafe { (*std::ptr::addr_of!(V2OUT)).as_ptr() } }
+
+fn bw_den(s: C, m: usize) -> C {
+    let mut d = C(1.0, 0.0);
+    if m % 2 == 1 { d = d.mul(s.add(C(1.0, 0.0))); }
+    for k in 1..=(m / 2) {
+        let a = 2.0 * (((2 * k - 1) as f64) * PI / (2.0 * m as f64)).sin();
+        d = d.mul(s.mul(s).add(s.scale(a)).add(C(1.0, 0.0)));
+    }
+    d
+}
+fn lr_lp(f: f64, fc: f64, m: usize) -> C { let b = C(1.0, 0.0).div(bw_den(C(0.0, f / fc), m)); b.mul(b) }
+fn lr_hp(f: f64, fc: f64, m: usize) -> C {
+    let s = C(0.0, f / fc);
+    let mut sm = C(1.0, 0.0);
+    for _ in 0..m { sm = sm.mul(s); }
+    let b = sm.div(bw_den(s, m));
+    b.mul(b)
+}
+
+#[no_mangle]
+pub extern "C" fn vertical2(ways: usize, n_freq: usize, n_el: usize, f_lo: f64, f_hi: f64) -> usize {
+    let ways = ways.clamp(1, MAX_WAYS);
+    let xo = unsafe { *std::ptr::addr_of!(IN) };
+    let v = unsafe { *std::ptr::addr_of!(V2IN) };
+    let out = unsafe { &mut *std::ptr::addr_of_mut!(V2OUT) };
+    out.clear();
+    let m = (v[40].round() as usize).clamp(1, 4);
+    let nsub = (v[41].round() as usize).clamp(3, 41) | 1;
+    for fi in 0..n_freq {
+        let t = fi as f64 / (n_freq.max(2) - 1) as f64;
+        let f = f_lo * (f_hi / f_lo).powf(t);
+        let k = 2.0 * PI * f / 343.0;
+        let mut band = [C(1.0, 0.0); MAX_WAYS];
+        for w in 0..ways {
+            let mut h = C(1.0, 0.0);
+            if w > 0 { h = h.mul(lr_hp(f, xo[MAX_WAYS * CFG + w - 1], m)); }
+            if w + 1 < ways { h = h.mul(lr_lp(f, xo[MAX_WAYS * CFG + w], m)); }
+            // 奇数次(LR2/LR6)は隣接バンドが逆相で合成されるため、1つおきに極性を反転して配線する
+            if m % 2 == 1 && w % 2 == 1 { h = h.scale(-1.0); }
+            band[w] = h.scale(10f64.powf(v[w * 8 + 3] / 20.0));
+        }
+        for ei in 0..n_el {
+            let el = (-90.0 + 180.0 * ei as f64 / (n_el - 1) as f64).to_radians();
+            let mut sum = C(0.0, 0.0);
+            for w in 0..ways {
+                let (z, hh, phi0, spread, taper) = (v[w * 8], v[w * 8 + 1], v[w * 8 + 2], v[w * 8 + 4], v[w * 8 + 5]);
+                let mut acc = C(0.0, 0.0);
+                let mut wsum = 0.0;
+                for j in 0..nsub {
+                    let u = -1.0 + 2.0 * j as f64 / (nsub - 1) as f64;
+                    let wt = if taper > 0.5 { 0.5 + 0.5 * (PI * u).cos() } else { 1.0 };
+                    let phi = (phi0 + spread * u).to_radians();
+                    let dir = 0.5 + 0.5 * (el - phi).cos();      // 面素の放射(広い)
+                    let ph = k * (z + u * hh / 2.0) * el.sin();
+                    acc = acc.add(C(ph.cos(), ph.sin()).scale(wt * dir * dir));
+                    wsum += wt;
+                }
+                sum = sum.add(band[w].mul(acc).scale(1.0 / wsum));
+            }
+            out.push(20.0 * sum.abs().max(1e-9).log10());
+        }
+    }
+    out.len()
+}

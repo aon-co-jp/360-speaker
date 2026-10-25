@@ -48,37 +48,37 @@
 <text x="950" y="152" font-size="13" text-anchor="start" font-weight="bold" fill="#111">帯域</text>
 <text x="1090" y="152" font-size="13" text-anchor="start" font-weight="bold" fill="#111">方式</text>
 <text x="1300" y="152" font-size="13" text-anchor="start" font-weight="bold" fill="#111">ユニット</text>
-<text x="1460" y="152" font-size="13" text-anchor="start" font-weight="bold" fill="#111">分割(LR2)</text>
+<text x="1460" y="152" font-size="13" text-anchor="start" font-weight="bold" fill="#111">分割(LR4)</text>
 <line x1="900" y1="158" x2="1640" y2="158" stroke="#111" stroke-width="0.8" />
 <text x="900" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">1</text>
-<text x="950" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">20-60Hz</text>
+<text x="950" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">20-150Hz</text>
 <text x="1090" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">対向2個+隙間20mm</text>
 <text x="1300" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">φ200×2(8in)</text>
-<text x="1460" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">LP 60Hz</text>
+<text x="1460" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">LP 150Hz</text>
 <line x1="900" y1="184" x2="1640" y2="184" stroke="#111" stroke-width="0.8" />
 <text x="900" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">2</text>
-<text x="950" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">60-600Hz</text>
+<text x="950" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">150-580Hz</text>
 <text x="1090" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">対向2個+隙間12mm</text>
 <text x="1300" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">φ130×2(5in)</text>
-<text x="1460" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP60 / LP600Hz</text>
+<text x="1460" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP150 / LP580Hz</text>
 <line x1="900" y1="210" x2="1640" y2="210" stroke="#111" stroke-width="0.8" />
 <text x="900" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">3</text>
-<text x="950" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">0.6-4.2kHz</text>
+<text x="950" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">0.58-4.4kHz</text>
 <text x="1090" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">上向き+吊り円錐</text>
 <text x="1300" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">φ75×1</text>
-<text x="1460" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP600 / LP4.2k</text>
+<text x="1460" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP580 / LP4.4k</text>
 <line x1="900" y1="236" x2="1640" y2="236" stroke="#111" stroke-width="0.8" />
 <text x="900" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">4</text>
-<text x="950" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">4.2-13.2kHz</text>
+<text x="950" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">4.4-14.5kHz</text>
 <text x="1090" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">上向き+吊り円錐</text>
 <text x="1300" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">φ25×1</text>
-<text x="1460" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP4.2k / LP13.2k</text>
+<text x="1460" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP4.4k / LP14.5k</text>
 <line x1="900" y1="262" x2="1640" y2="262" stroke="#111" stroke-width="0.8" />
 <text x="900" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">5</text>
-<text x="950" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">13.2k-40kHz+</text>
+<text x="950" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">14.5k-40kHz+</text>
 <text x="1090" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">上向き+吊り円錐</text>
 <text x="1300" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">φ19リボン×1</text>
-<text x="1460" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP13.2kHz</text>
+<text x="1460" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP14.5kHz</text>
 <line x1="900" y1="288" x2="1640" y2="288" stroke="#111" stroke-width="0.8" />
 <text x="900" y="340" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・WAY1・2: 2個のコーンが同時に隙間へ向かう押し合い配線(片方を逆極性)。隙間が小さいほど圧縮</text>
 <text x="900" y="360" font-size="13" text-anchor="start" font-weight="normal" fill="#111">比が上がり風速が増す→ 超低音は隙間20mm以上を推奨(40Hz・Xmaxで風速11m/s、10mm</text>
@@ -88,9 +88,10 @@
 <text x="900" y="456" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・WAY3〜5: 円錐の半頂角45°で水平放射(反射角=2×半頂角)。縁の隙間は圧縮比1.6以下に。</text>
 <text x="900" y="476" font-size="13" text-anchor="start" font-weight="normal" fill="#111">円錐半径は帯域下限の波長に対し大きく(小さいと拡散制御が効かない)。</text>
 <text x="900" y="504" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・水平面は円対称で全方位。垂直面は各WAYの位置・開口高さでロービング(縦方向の山谷)が出る→ シミ</text>
-<text x="900" y="524" font-size="13" text-anchor="start" font-weight="normal" fill="#111">ュレーターで分割周波数を調整(仰角±30°内の最悪偏差 約24dB、分割付近に残る)。</text>
-<text x="900" y="552" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・外殻は円筒(壁のたわみは平板より小さい)。MDF25mm程度から。内部に補強リブ・吸音材。ユニット</text>
-<text x="900" y="572" font-size="13" text-anchor="start" font-weight="normal" fill="#111">背面には防振ガスケット。</text>
-<text x="900" y="600" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・実機では円錐形状・支柱・隙間を試作し、指向性測定(水平・垂直)で詰める必要がある。</text>
+<text x="900" y="524" font-size="13" text-anchor="start" font-weight="normal" fill="#111">ュレーターで分割次数・間隔・開口・円錐形状を比較(仰角±30°内のばらつき 約13〜14dB、4.4</text>
+<text x="900" y="544" font-size="13" text-anchor="start" font-weight="normal" fill="#111">kHz付近に残る。条件による差は小さい)。</text>
+<text x="900" y="572" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・外殻は円筒(壁のたわみは平板より小さい)。MDF25mm程度から。内部に補強リブ・吸音材。ユニット</text>
+<text x="900" y="592" font-size="13" text-anchor="start" font-weight="normal" fill="#111">背面には防振ガスケット。</text>
+<text x="900" y="620" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・実機では円錐形状・支柱・隙間を試作し、指向性測定(水平・垂直)で詰める必要がある。</text>
 <text x="900" y="1130" font-size="12" text-anchor="start" font-weight="normal" fill="#111">※全高 約1140mm(ベース40mm含む)。寸法は図示の初期案。</text>
 </svg>

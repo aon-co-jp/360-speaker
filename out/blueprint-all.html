@@ -1,7 +1,7 @@
 <!doctype html><meta charset="utf-8"><style>@page{size:1700px 1180px;margin:0}html,body{margin:0}svg{display:block;page-break-after:always}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1700 1180" width="1700" height="1180" font-family="Meiryo,Yu Gothic,sans-serif">
 <rect width="1700" height="1180" fill="#fff"/>
 <text x="40" y="44" font-size="24" text-anchor="start" font-weight="bold" fill="#111">360-speaker  受動ネットワーク回路図(1台のアンプ→5WAY)</text>
-<text x="40" y="70" font-size="13" text-anchor="start" font-weight="normal" fill="#111">図1/2  2026-10-25 第2版  WAY1・2=8Ω×2並列(4Ω)・WAY3〜5=8Ω×1  クロスオーバーは2次LR(Linkwitz-Riley)</text>
+<text x="40" y="70" font-size="13" text-anchor="start" font-weight="normal" fill="#111">図1/2  2026-10-25 第3版  WAY1・2=8Ω×2並列(4Ω)・WAY3〜5=8Ω×1  クロスオーバーは4次LR(Linkwitz-Riley, 24dB/oct)</text>
 <line x1="150" y1="1074" x2="1560" y2="1074" stroke="#111" stroke-width="2.2" />
 <text x="142" y="1078" font-size="12" text-anchor="end" font-weight="normal" fill="#111">GND</text>
 <rect x="40" y="480" width="70" height="130" fill="none" stroke="#111" stroke-width="2.4" /><text x="75" y="540" font-size="18" text-anchor="middle" font-weight="bold" fill="#111">AMP</text><text x="75" y="562" font-size="13" text-anchor="middle" font-weight="normal" fill="#111">1台</text>
@@ -10,86 +10,102 @@
 <line x1="75" y1="610" x2="75" y2="1074" stroke="#111" stroke-width="2.2" />
 <line x1="75" y1="1074" x2="150" y2="1074" stroke="#111" stroke-width="2.2" />
 <line x1="150" y1="150" x2="150" y2="960" stroke="#111" stroke-width="2.4" />
-<text x="170" y="100" font-size="15" text-anchor="start" font-weight="bold" fill="#111">WAY1  超低音(サブウーファー)  20-60Hz   [φ200mm(8in)ウーファー×2 対向]</text>
-<line x1="150" y1="150" x2="600" y2="150" stroke="#111" stroke-width="1.6" />
-<rect x="238" y="138" width="64" height="24" fill="#fff"/><path d="M240,150 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 " fill="none" stroke="#111" stroke-width="1.8"/><text x="270" y="132" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">L 21.2mH</text>
-<line x1="310" y1="150" x2="310" y2="187.5" stroke="#111" stroke-width="1.6" /><line x1="310" y1="197.5" x2="310" y2="235" stroke="#111" stroke-width="1.6" /><line x1="294" y1="187.5" x2="326" y2="187.5" stroke="#111" stroke-width="2.4" /><line x1="294" y1="197.5" x2="326" y2="197.5" stroke="#111" stroke-width="2.4" /><text x="332" y="196.5" font-size="12" text-anchor="start" font-weight="normal" fill="#111">C 332µF</text>
-<rect x="430" y="144" width="40" height="12" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="450" y="138" font-size="11" text-anchor="middle" font-weight="normal" fill="#111">Rs</text>
-<line x1="505" y1="150" x2="505" y2="170" stroke="#111" stroke-width="1.6" /><rect x="499" y="170" width="12" height="40" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="517" y="194" font-size="11" text-anchor="start" font-weight="normal" fill="#111">Rp</text><line x1="505" y1="210" x2="505" y2="235" stroke="#111" stroke-width="1.6" />
-<rect x="380" y="116" width="180" height="118" fill="none" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="6 4"/>
-<text x="470" y="250" font-size="11" text-anchor="middle" font-weight="normal" fill="#c0392b">VR1 24接点L-pad(4Ω) -6dB: Rs 2.0Ω / Rp 4.0Ω</text>
-<line x1="600" y1="120" x2="600" y2="180" stroke="#111" stroke-width="1.6" />
-<line x1="600" y1="120" x2="640" y2="120" stroke="#111" stroke-width="1.6" />
-<line x1="600" y1="180" x2="640" y2="180" stroke="#111" stroke-width="1.6" />
-<rect x="640" y="110" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M654,110 L670,98 L670,142 L654,130" fill="none" stroke="#111" stroke-width="1.8"/><text x="678" y="124" font-size="11" text-anchor="start" font-weight="normal" fill="#111">下側ユニット(上向き) 正極性</text>
-<rect x="640" y="170" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M654,170 L670,158 L670,202 L654,190" fill="none" stroke="#111" stroke-width="1.8"/><text x="678" y="184" font-size="11" text-anchor="start" font-weight="normal" fill="#111">上側ユニット(下向き) 逆極性</text>
-<line x1="654" y1="120" x2="654" y2="180" stroke="#111" stroke-width="1.6" />
-<text x="662" y="206" font-size="11" text-anchor="start" font-weight="normal" fill="#111">対向: 片方を逆極性に配線 → 両コーンが同時に隙間へ向かう(押し合い)</text>
-<line x1="654" y1="180" x2="654" y2="235" stroke="#111" stroke-width="1.6" />
+<text x="170" y="100" font-size="15" text-anchor="start" font-weight="bold" fill="#111">WAY1  超低音(サブウーファー)  20-150Hz   [φ200mm(8in)ウーファー×2 対向]</text>
+<line x1="150" y1="150" x2="720" y2="150" stroke="#111" stroke-width="1.6" />
+<rect x="238" y="138" width="64" height="24" fill="#fff"/><path d="M240,150 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 " fill="none" stroke="#111" stroke-width="1.8"/><text x="270" y="132" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">L1 8.00mH</text>
+<line x1="300" y1="150" x2="300" y2="187.5" stroke="#111" stroke-width="1.6" /><line x1="300" y1="197.5" x2="300" y2="235" stroke="#111" stroke-width="1.6" /><line x1="284" y1="187.5" x2="316" y2="187.5" stroke="#111" stroke-width="2.4" /><line x1="284" y1="197.5" x2="316" y2="197.5" stroke="#111" stroke-width="2.4" /><text x="322" y="196.5" font-size="12" text-anchor="start" font-weight="normal" fill="#111">C1 422µF</text>
+<rect x="368" y="138" width="64" height="24" fill="#fff"/><path d="M370,150 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 " fill="none" stroke="#111" stroke-width="1.8"/><text x="400" y="132" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">L2 4.00mH</text>
+<line x1="430" y1="150" x2="430" y2="187.5" stroke="#111" stroke-width="1.6" /><line x1="430" y1="197.5" x2="430" y2="235" stroke="#111" stroke-width="1.6" /><line x1="414" y1="187.5" x2="446" y2="187.5" stroke="#111" stroke-width="2.4" /><line x1="414" y1="197.5" x2="446" y2="197.5" stroke="#111" stroke-width="2.4" /><text x="452" y="196.5" font-size="12" text-anchor="start" font-weight="normal" fill="#111">C2 93.8µF</text>
+<rect x="550" y="144" width="40" height="12" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="570" y="138" font-size="11" text-anchor="middle" font-weight="normal" fill="#111">Rs</text>
+<line x1="625" y1="150" x2="625" y2="170" stroke="#111" stroke-width="1.6" /><rect x="619" y="170" width="12" height="40" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="637" y="194" font-size="11" text-anchor="start" font-weight="normal" fill="#111">Rp</text><line x1="625" y1="210" x2="625" y2="235" stroke="#111" stroke-width="1.6" />
+<rect x="500" y="116" width="180" height="118" fill="none" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="6 4"/>
+<text x="590" y="250" font-size="11" text-anchor="middle" font-weight="normal" fill="#c0392b">VR1 24接点L-pad(4Ω) -6dB: Rs 2.0Ω / Rp 4.0Ω</text>
+<line x1="720" y1="120" x2="720" y2="180" stroke="#111" stroke-width="1.6" />
+<line x1="720" y1="120" x2="760" y2="120" stroke="#111" stroke-width="1.6" />
+<line x1="720" y1="180" x2="760" y2="180" stroke="#111" stroke-width="1.6" />
+<rect x="760" y="110" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M774,110 L790,98 L790,142 L774,130" fill="none" stroke="#111" stroke-width="1.8"/><text x="798" y="124" font-size="11" text-anchor="start" font-weight="normal" fill="#111">下側ユニット(上向き) 正極性</text>
+<rect x="760" y="170" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M774,170 L790,158 L790,202 L774,190" fill="none" stroke="#111" stroke-width="1.8"/><text x="798" y="184" font-size="11" text-anchor="start" font-weight="normal" fill="#111">上側ユニット(下向き) 逆極性</text>
+<line x1="774" y1="120" x2="774" y2="180" stroke="#111" stroke-width="1.6" />
+<text x="782" y="206" font-size="11" text-anchor="start" font-weight="normal" fill="#111">対向: 片方を逆極性に配線 → 両コーンが同時に隙間へ向かう(押し合い)</text>
+<line x1="774" y1="180" x2="774" y2="235" stroke="#111" stroke-width="1.6" />
 <line x1="200" y1="235" x2="1560" y2="235" stroke="#111" stroke-width="1.6" />
-<text x="170" y="300" font-size="15" text-anchor="start" font-weight="bold" fill="#111">WAY2  低音  60-600Hz   [φ130mm(5in)ウーファー×2 対向]</text>
-<line x1="150" y1="350" x2="710" y2="350" stroke="#111" stroke-width="1.6" />
-<rect x="198" y="330" width="64" height="40" fill="#fff"/><line x1="200" y1="350" x2="225" y2="350" stroke="#111" stroke-width="1.6" /><line x1="235" y1="350" x2="260" y2="350" stroke="#111" stroke-width="1.6" /><line x1="225" y1="334" x2="225" y2="366" stroke="#111" stroke-width="2.4" /><line x1="235" y1="334" x2="235" y2="366" stroke="#111" stroke-width="2.4" /><text x="230" y="326" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">C 1326µF</text>
-<path d="M280,350 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 " fill="none" stroke="#111" stroke-width="1.8"/><line x1="280" y1="410" x2="280" y2="435" stroke="#111" stroke-width="1.6" /><text x="294" y="386" font-size="12" text-anchor="start" font-weight="normal" fill="#111">L 5.31mH</text>
-<rect x="348" y="338" width="64" height="24" fill="#fff"/><path d="M350,350 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 " fill="none" stroke="#111" stroke-width="1.8"/><text x="380" y="332" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">L 2.12mH</text>
-<line x1="420" y1="350" x2="420" y2="387.5" stroke="#111" stroke-width="1.6" /><line x1="420" y1="397.5" x2="420" y2="435" stroke="#111" stroke-width="1.6" /><line x1="404" y1="387.5" x2="436" y2="387.5" stroke="#111" stroke-width="2.4" /><line x1="404" y1="397.5" x2="436" y2="397.5" stroke="#111" stroke-width="2.4" /><text x="442" y="396.5" font-size="12" text-anchor="start" font-weight="normal" fill="#111">C 33.2µF</text>
-<rect x="540" y="344" width="40" height="12" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="560" y="338" font-size="11" text-anchor="middle" font-weight="normal" fill="#111">Rs</text>
-<line x1="615" y1="350" x2="615" y2="370" stroke="#111" stroke-width="1.6" /><rect x="609" y="370" width="12" height="40" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="627" y="394" font-size="11" text-anchor="start" font-weight="normal" fill="#111">Rp</text><line x1="615" y1="410" x2="615" y2="435" stroke="#111" stroke-width="1.6" />
-<rect x="490" y="316" width="180" height="118" fill="none" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="6 4"/>
-<text x="580" y="450" font-size="11" text-anchor="middle" font-weight="normal" fill="#c0392b">VR2 24接点L-pad(4Ω) -6dB: Rs 2.0Ω / Rp 4.0Ω</text>
-<line x1="710" y1="320" x2="710" y2="380" stroke="#111" stroke-width="1.6" />
-<line x1="710" y1="320" x2="750" y2="320" stroke="#111" stroke-width="1.6" />
-<line x1="710" y1="380" x2="750" y2="380" stroke="#111" stroke-width="1.6" />
-<rect x="750" y="310" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M764,310 L780,298 L780,342 L764,330" fill="none" stroke="#111" stroke-width="1.8"/><text x="788" y="324" font-size="11" text-anchor="start" font-weight="normal" fill="#111">下側ユニット(上向き) 正極性</text>
-<rect x="750" y="370" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M764,370 L780,358 L780,402 L764,390" fill="none" stroke="#111" stroke-width="1.8"/><text x="788" y="384" font-size="11" text-anchor="start" font-weight="normal" fill="#111">上側ユニット(下向き) 逆極性</text>
-<line x1="764" y1="320" x2="764" y2="380" stroke="#111" stroke-width="1.6" />
-<text x="772" y="406" font-size="11" text-anchor="start" font-weight="normal" fill="#111">対向: 片方を逆極性に配線 → 両コーンが同時に隙間へ向かう(押し合い)</text>
-<line x1="764" y1="380" x2="764" y2="435" stroke="#111" stroke-width="1.6" />
+<text x="170" y="300" font-size="15" text-anchor="start" font-weight="bold" fill="#111">WAY2  低音  150-580Hz   [φ130mm(5in)ウーファー×2 対向]</text>
+<line x1="150" y1="350" x2="940" y2="350" stroke="#111" stroke-width="1.6" />
+<rect x="198" y="330" width="64" height="40" fill="#fff"/><line x1="200" y1="350" x2="225" y2="350" stroke="#111" stroke-width="1.6" /><line x1="235" y1="350" x2="260" y2="350" stroke="#111" stroke-width="1.6" /><line x1="225" y1="334" x2="225" y2="366" stroke="#111" stroke-width="2.4" /><line x1="235" y1="334" x2="235" y2="366" stroke="#111" stroke-width="2.4" /><text x="230" y="326" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">C1 141µF</text>
+<path d="M280,350 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 " fill="none" stroke="#111" stroke-width="1.8"/><line x1="280" y1="410" x2="280" y2="435" stroke="#111" stroke-width="1.6" /><text x="294" y="386" font-size="12" text-anchor="start" font-weight="normal" fill="#111">L1 2.67mH</text>
+<rect x="308" y="330" width="64" height="40" fill="#fff"/><line x1="310" y1="350" x2="335" y2="350" stroke="#111" stroke-width="1.6" /><line x1="345" y1="350" x2="370" y2="350" stroke="#111" stroke-width="1.6" /><line x1="335" y1="334" x2="335" y2="366" stroke="#111" stroke-width="2.4" /><line x1="345" y1="334" x2="345" y2="366" stroke="#111" stroke-width="2.4" /><text x="340" y="326" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">C2 281µF</text>
+<path d="M390,350 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 " fill="none" stroke="#111" stroke-width="1.8"/><line x1="390" y1="410" x2="390" y2="435" stroke="#111" stroke-width="1.6" /><text x="404" y="386" font-size="12" text-anchor="start" font-weight="normal" fill="#111">L2 12.0mH</text>
+<rect x="458" y="338" width="64" height="24" fill="#fff"/><path d="M460,350 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 " fill="none" stroke="#111" stroke-width="1.8"/><text x="490" y="332" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">L1 2.07mH</text>
+<line x1="520" y1="350" x2="520" y2="387.5" stroke="#111" stroke-width="1.6" /><line x1="520" y1="397.5" x2="520" y2="435" stroke="#111" stroke-width="1.6" /><line x1="504" y1="387.5" x2="536" y2="387.5" stroke="#111" stroke-width="2.4" /><line x1="504" y1="397.5" x2="536" y2="397.5" stroke="#111" stroke-width="2.4" /><text x="542" y="396.5" font-size="12" text-anchor="start" font-weight="normal" fill="#111">C1 109µF</text>
+<rect x="588" y="338" width="64" height="24" fill="#fff"/><path d="M590,350 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 " fill="none" stroke="#111" stroke-width="1.8"/><text x="620" y="332" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">L2 1.03mH</text>
+<line x1="650" y1="350" x2="650" y2="387.5" stroke="#111" stroke-width="1.6" /><line x1="650" y1="397.5" x2="650" y2="435" stroke="#111" stroke-width="1.6" /><line x1="634" y1="387.5" x2="666" y2="387.5" stroke="#111" stroke-width="2.4" /><line x1="634" y1="397.5" x2="666" y2="397.5" stroke="#111" stroke-width="2.4" /><text x="672" y="396.5" font-size="12" text-anchor="start" font-weight="normal" fill="#111">C2 24.3µF</text>
+<rect x="770" y="344" width="40" height="12" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="790" y="338" font-size="11" text-anchor="middle" font-weight="normal" fill="#111">Rs</text>
+<line x1="845" y1="350" x2="845" y2="370" stroke="#111" stroke-width="1.6" /><rect x="839" y="370" width="12" height="40" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="857" y="394" font-size="11" text-anchor="start" font-weight="normal" fill="#111">Rp</text><line x1="845" y1="410" x2="845" y2="435" stroke="#111" stroke-width="1.6" />
+<rect x="720" y="316" width="180" height="118" fill="none" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="6 4"/>
+<text x="810" y="450" font-size="11" text-anchor="middle" font-weight="normal" fill="#c0392b">VR2 24接点L-pad(4Ω) -6dB: Rs 2.0Ω / Rp 4.0Ω</text>
+<line x1="940" y1="320" x2="940" y2="380" stroke="#111" stroke-width="1.6" />
+<line x1="940" y1="320" x2="980" y2="320" stroke="#111" stroke-width="1.6" />
+<line x1="940" y1="380" x2="980" y2="380" stroke="#111" stroke-width="1.6" />
+<rect x="980" y="310" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M994,310 L1010,298 L1010,342 L994,330" fill="none" stroke="#111" stroke-width="1.8"/><text x="1018" y="324" font-size="11" text-anchor="start" font-weight="normal" fill="#111">下側ユニット(上向き) 正極性</text>
+<rect x="980" y="370" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M994,370 L1010,358 L1010,402 L994,390" fill="none" stroke="#111" stroke-width="1.8"/><text x="1018" y="384" font-size="11" text-anchor="start" font-weight="normal" fill="#111">上側ユニット(下向き) 逆極性</text>
+<line x1="994" y1="320" x2="994" y2="380" stroke="#111" stroke-width="1.6" />
+<text x="1002" y="406" font-size="11" text-anchor="start" font-weight="normal" fill="#111">対向: 片方を逆極性に配線 → 両コーンが同時に隙間へ向かう(押し合い)</text>
+<line x1="994" y1="380" x2="994" y2="435" stroke="#111" stroke-width="1.6" />
 <line x1="200" y1="435" x2="1560" y2="435" stroke="#111" stroke-width="1.6" />
-<text x="170" y="500" font-size="15" text-anchor="start" font-weight="bold" fill="#111">WAY3  中音  600Hz-4.2kHz   [φ75mm(3in)ミッド×1 上向き]</text>
-<line x1="150" y1="550" x2="710" y2="550" stroke="#111" stroke-width="1.6" />
-<rect x="198" y="530" width="64" height="40" fill="#fff"/><line x1="200" y1="550" x2="225" y2="550" stroke="#111" stroke-width="1.6" /><line x1="235" y1="550" x2="260" y2="550" stroke="#111" stroke-width="1.6" /><line x1="225" y1="534" x2="225" y2="566" stroke="#111" stroke-width="2.4" /><line x1="235" y1="534" x2="235" y2="566" stroke="#111" stroke-width="2.4" /><text x="230" y="526" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">C 66.3µF</text>
-<path d="M280,550 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 " fill="none" stroke="#111" stroke-width="1.8"/><line x1="280" y1="610" x2="280" y2="635" stroke="#111" stroke-width="1.6" /><text x="294" y="586" font-size="12" text-anchor="start" font-weight="normal" fill="#111">L 1.06mH</text>
-<rect x="348" y="538" width="64" height="24" fill="#fff"/><path d="M350,550 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 " fill="none" stroke="#111" stroke-width="1.8"/><text x="380" y="532" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">L 0.61mH</text>
-<line x1="420" y1="550" x2="420" y2="587.5" stroke="#111" stroke-width="1.6" /><line x1="420" y1="597.5" x2="420" y2="635" stroke="#111" stroke-width="1.6" /><line x1="404" y1="587.5" x2="436" y2="587.5" stroke="#111" stroke-width="2.4" /><line x1="404" y1="597.5" x2="436" y2="597.5" stroke="#111" stroke-width="2.4" /><text x="442" y="596.5" font-size="12" text-anchor="start" font-weight="normal" fill="#111">C 2.37µF</text>
-<rect x="540" y="544" width="40" height="12" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="560" y="538" font-size="11" text-anchor="middle" font-weight="normal" fill="#111">Rs</text>
-<line x1="615" y1="550" x2="615" y2="570" stroke="#111" stroke-width="1.6" /><rect x="609" y="570" width="12" height="40" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="627" y="594" font-size="11" text-anchor="start" font-weight="normal" fill="#111">Rp</text><line x1="615" y1="610" x2="615" y2="635" stroke="#111" stroke-width="1.6" />
-<rect x="490" y="516" width="180" height="118" fill="none" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="6 4"/>
-<text x="580" y="650" font-size="11" text-anchor="middle" font-weight="normal" fill="#c0392b">VR3 24接点L-pad(8Ω) -6dB: Rs 4.0Ω / Rp 8.0Ω</text>
-<line x1="710" y1="550" x2="750" y2="550" stroke="#111" stroke-width="1.6" />
-<rect x="750" y="540" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M764,540 L780,528 L780,572 L764,560" fill="none" stroke="#111" stroke-width="1.8"/><text x="788" y="554" font-size="11" text-anchor="start" font-weight="normal" fill="#111">上向き(吊り下げ円錐で水平360°へ反射)</text>
-<line x1="764" y1="560" x2="764" y2="635" stroke="#111" stroke-width="1.6" />
+<text x="170" y="500" font-size="15" text-anchor="start" font-weight="bold" fill="#111">WAY3  中音  580Hz-4.4kHz   [φ75mm(3in)ミッド×1 上向き]</text>
+<line x1="150" y1="550" x2="940" y2="550" stroke="#111" stroke-width="1.6" />
+<rect x="198" y="530" width="64" height="40" fill="#fff"/><line x1="200" y1="550" x2="225" y2="550" stroke="#111" stroke-width="1.6" /><line x1="235" y1="550" x2="260" y2="550" stroke="#111" stroke-width="1.6" /><line x1="225" y1="534" x2="225" y2="566" stroke="#111" stroke-width="2.4" /><line x1="235" y1="534" x2="235" y2="566" stroke="#111" stroke-width="2.4" /><text x="230" y="526" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">C1 18.2µF</text>
+<path d="M280,550 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 " fill="none" stroke="#111" stroke-width="1.8"/><line x1="280" y1="610" x2="280" y2="635" stroke="#111" stroke-width="1.6" /><text x="294" y="586" font-size="12" text-anchor="start" font-weight="normal" fill="#111">L1 1.38mH</text>
+<rect x="308" y="530" width="64" height="40" fill="#fff"/><line x1="310" y1="550" x2="335" y2="550" stroke="#111" stroke-width="1.6" /><line x1="345" y1="550" x2="370" y2="550" stroke="#111" stroke-width="1.6" /><line x1="335" y1="534" x2="335" y2="566" stroke="#111" stroke-width="2.4" /><line x1="345" y1="534" x2="345" y2="566" stroke="#111" stroke-width="2.4" /><text x="340" y="526" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">C2 36.4µF</text>
+<path d="M390,550 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 " fill="none" stroke="#111" stroke-width="1.8"/><line x1="390" y1="610" x2="390" y2="635" stroke="#111" stroke-width="1.6" /><text x="404" y="586" font-size="12" text-anchor="start" font-weight="normal" fill="#111">L2 6.21mH</text>
+<rect x="458" y="538" width="64" height="24" fill="#fff"/><path d="M460,550 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 " fill="none" stroke="#111" stroke-width="1.8"/><text x="490" y="532" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">L1 0.55mH</text>
+<line x1="520" y1="550" x2="520" y2="587.5" stroke="#111" stroke-width="1.6" /><line x1="520" y1="597.5" x2="520" y2="635" stroke="#111" stroke-width="1.6" /><line x1="504" y1="587.5" x2="536" y2="587.5" stroke="#111" stroke-width="2.4" /><line x1="504" y1="597.5" x2="536" y2="597.5" stroke="#111" stroke-width="2.4" /><text x="542" y="596.5" font-size="12" text-anchor="start" font-weight="normal" fill="#111">C1 7.19µF</text>
+<rect x="588" y="538" width="64" height="24" fill="#fff"/><path d="M590,550 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 " fill="none" stroke="#111" stroke-width="1.8"/><text x="620" y="532" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">L2 0.27mH</text>
+<line x1="650" y1="550" x2="650" y2="587.5" stroke="#111" stroke-width="1.6" /><line x1="650" y1="597.5" x2="650" y2="635" stroke="#111" stroke-width="1.6" /><line x1="634" y1="587.5" x2="666" y2="587.5" stroke="#111" stroke-width="2.4" /><line x1="634" y1="597.5" x2="666" y2="597.5" stroke="#111" stroke-width="2.4" /><text x="672" y="596.5" font-size="12" text-anchor="start" font-weight="normal" fill="#111">C2 1.60µF</text>
+<rect x="770" y="544" width="40" height="12" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="790" y="538" font-size="11" text-anchor="middle" font-weight="normal" fill="#111">Rs</text>
+<line x1="845" y1="550" x2="845" y2="570" stroke="#111" stroke-width="1.6" /><rect x="839" y="570" width="12" height="40" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="857" y="594" font-size="11" text-anchor="start" font-weight="normal" fill="#111">Rp</text><line x1="845" y1="610" x2="845" y2="635" stroke="#111" stroke-width="1.6" />
+<rect x="720" y="516" width="180" height="118" fill="none" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="6 4"/>
+<text x="810" y="650" font-size="11" text-anchor="middle" font-weight="normal" fill="#c0392b">VR3 24接点L-pad(8Ω) -6dB: Rs 4.0Ω / Rp 8.0Ω</text>
+<line x1="940" y1="550" x2="980" y2="550" stroke="#111" stroke-width="1.6" />
+<rect x="980" y="540" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M994,540 L1010,528 L1010,572 L994,560" fill="none" stroke="#111" stroke-width="1.8"/><text x="1018" y="554" font-size="11" text-anchor="start" font-weight="normal" fill="#111">上向き(吊り下げ円錐で水平360°へ反射)</text>
+<line x1="994" y1="560" x2="994" y2="635" stroke="#111" stroke-width="1.6" />
 <line x1="200" y1="635" x2="1560" y2="635" stroke="#111" stroke-width="1.6" />
-<text x="170" y="700" font-size="15" text-anchor="start" font-weight="bold" fill="#111">WAY4  高音  4.2k-13.2kHz   [φ25mm ドームツィーター×1 上向き]</text>
-<line x1="150" y1="750" x2="710" y2="750" stroke="#111" stroke-width="1.6" />
-<rect x="198" y="730" width="64" height="40" fill="#fff"/><line x1="200" y1="750" x2="225" y2="750" stroke="#111" stroke-width="1.6" /><line x1="235" y1="750" x2="260" y2="750" stroke="#111" stroke-width="1.6" /><line x1="225" y1="734" x2="225" y2="766" stroke="#111" stroke-width="2.4" /><line x1="235" y1="734" x2="235" y2="766" stroke="#111" stroke-width="2.4" /><text x="230" y="726" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">C 9.47µF</text>
-<path d="M280,750 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 " fill="none" stroke="#111" stroke-width="1.8"/><line x1="280" y1="810" x2="280" y2="835" stroke="#111" stroke-width="1.6" /><text x="294" y="786" font-size="12" text-anchor="start" font-weight="normal" fill="#111">L 0.15mH</text>
-<rect x="348" y="738" width="64" height="24" fill="#fff"/><path d="M350,750 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 " fill="none" stroke="#111" stroke-width="1.8"/><text x="380" y="732" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">L 0.19mH</text>
-<line x1="420" y1="750" x2="420" y2="787.5" stroke="#111" stroke-width="1.6" /><line x1="420" y1="797.5" x2="420" y2="835" stroke="#111" stroke-width="1.6" /><line x1="404" y1="787.5" x2="436" y2="787.5" stroke="#111" stroke-width="2.4" /><line x1="404" y1="797.5" x2="436" y2="797.5" stroke="#111" stroke-width="2.4" /><text x="442" y="796.5" font-size="12" text-anchor="start" font-weight="normal" fill="#111">C 0.75µF</text>
-<rect x="540" y="744" width="40" height="12" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="560" y="738" font-size="11" text-anchor="middle" font-weight="normal" fill="#111">Rs</text>
-<line x1="615" y1="750" x2="615" y2="770" stroke="#111" stroke-width="1.6" /><rect x="609" y="770" width="12" height="40" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="627" y="794" font-size="11" text-anchor="start" font-weight="normal" fill="#111">Rp</text><line x1="615" y1="810" x2="615" y2="835" stroke="#111" stroke-width="1.6" />
-<rect x="490" y="716" width="180" height="118" fill="none" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="6 4"/>
-<text x="580" y="850" font-size="11" text-anchor="middle" font-weight="normal" fill="#c0392b">VR4 24接点L-pad(8Ω) -6dB: Rs 4.0Ω / Rp 8.0Ω</text>
-<line x1="710" y1="750" x2="750" y2="750" stroke="#111" stroke-width="1.6" />
-<rect x="750" y="740" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M764,740 L780,728 L780,772 L764,760" fill="none" stroke="#111" stroke-width="1.8"/><text x="788" y="754" font-size="11" text-anchor="start" font-weight="normal" fill="#111">上向き(吊り下げ円錐で水平360°へ反射)</text>
-<line x1="764" y1="760" x2="764" y2="835" stroke="#111" stroke-width="1.6" />
+<text x="170" y="700" font-size="15" text-anchor="start" font-weight="bold" fill="#111">WAY4  高音  4.4k-14.5kHz   [φ25mm ドームツィーター×1 上向き]</text>
+<line x1="150" y1="750" x2="940" y2="750" stroke="#111" stroke-width="1.6" />
+<rect x="198" y="730" width="64" height="40" fill="#fff"/><line x1="200" y1="750" x2="225" y2="750" stroke="#111" stroke-width="1.6" /><line x1="235" y1="750" x2="260" y2="750" stroke="#111" stroke-width="1.6" /><line x1="225" y1="734" x2="225" y2="766" stroke="#111" stroke-width="2.4" /><line x1="235" y1="734" x2="235" y2="766" stroke="#111" stroke-width="2.4" /><text x="230" y="726" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">C1 2.40µF</text>
+<path d="M280,750 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 " fill="none" stroke="#111" stroke-width="1.8"/><line x1="280" y1="810" x2="280" y2="835" stroke="#111" stroke-width="1.6" /><text x="294" y="786" font-size="12" text-anchor="start" font-weight="normal" fill="#111">L1 0.18mH</text>
+<rect x="308" y="730" width="64" height="40" fill="#fff"/><line x1="310" y1="750" x2="335" y2="750" stroke="#111" stroke-width="1.6" /><line x1="345" y1="750" x2="370" y2="750" stroke="#111" stroke-width="1.6" /><line x1="335" y1="734" x2="335" y2="766" stroke="#111" stroke-width="2.4" /><line x1="345" y1="734" x2="345" y2="766" stroke="#111" stroke-width="2.4" /><text x="340" y="726" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">C2 4.80µF</text>
+<path d="M390,750 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 " fill="none" stroke="#111" stroke-width="1.8"/><line x1="390" y1="810" x2="390" y2="835" stroke="#111" stroke-width="1.6" /><text x="404" y="786" font-size="12" text-anchor="start" font-weight="normal" fill="#111">L2 0.82mH</text>
+<rect x="458" y="738" width="64" height="24" fill="#fff"/><path d="M460,750 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 " fill="none" stroke="#111" stroke-width="1.8"/><text x="490" y="732" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">L1 0.17mH</text>
+<line x1="520" y1="750" x2="520" y2="787.5" stroke="#111" stroke-width="1.6" /><line x1="520" y1="797.5" x2="520" y2="835" stroke="#111" stroke-width="1.6" /><line x1="504" y1="787.5" x2="536" y2="787.5" stroke="#111" stroke-width="2.4" /><line x1="504" y1="797.5" x2="536" y2="797.5" stroke="#111" stroke-width="2.4" /><text x="542" y="796.5" font-size="12" text-anchor="start" font-weight="normal" fill="#111">C1 2.18µF</text>
+<rect x="588" y="738" width="64" height="24" fill="#fff"/><path d="M590,750 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 a7.5,9 0 0 1 15,0 " fill="none" stroke="#111" stroke-width="1.8"/><text x="620" y="732" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">L2 0.08mH</text>
+<line x1="650" y1="750" x2="650" y2="787.5" stroke="#111" stroke-width="1.6" /><line x1="650" y1="797.5" x2="650" y2="835" stroke="#111" stroke-width="1.6" /><line x1="634" y1="787.5" x2="666" y2="787.5" stroke="#111" stroke-width="2.4" /><line x1="634" y1="797.5" x2="666" y2="797.5" stroke="#111" stroke-width="2.4" /><text x="672" y="796.5" font-size="12" text-anchor="start" font-weight="normal" fill="#111">C2 0.49µF</text>
+<rect x="770" y="744" width="40" height="12" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="790" y="738" font-size="11" text-anchor="middle" font-weight="normal" fill="#111">Rs</text>
+<line x1="845" y1="750" x2="845" y2="770" stroke="#111" stroke-width="1.6" /><rect x="839" y="770" width="12" height="40" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="857" y="794" font-size="11" text-anchor="start" font-weight="normal" fill="#111">Rp</text><line x1="845" y1="810" x2="845" y2="835" stroke="#111" stroke-width="1.6" />
+<rect x="720" y="716" width="180" height="118" fill="none" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="6 4"/>
+<text x="810" y="850" font-size="11" text-anchor="middle" font-weight="normal" fill="#c0392b">VR4 24接点L-pad(8Ω) -6dB: Rs 4.0Ω / Rp 8.0Ω</text>
+<line x1="940" y1="750" x2="980" y2="750" stroke="#111" stroke-width="1.6" />
+<rect x="980" y="740" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M994,740 L1010,728 L1010,772 L994,760" fill="none" stroke="#111" stroke-width="1.8"/><text x="1018" y="754" font-size="11" text-anchor="start" font-weight="normal" fill="#111">上向き(吊り下げ円錐で水平360°へ反射)</text>
+<line x1="994" y1="760" x2="994" y2="835" stroke="#111" stroke-width="1.6" />
 <line x1="200" y1="835" x2="1560" y2="835" stroke="#111" stroke-width="1.6" />
-<text x="170" y="900" font-size="15" text-anchor="start" font-weight="bold" fill="#111">WAY5  超高音  13.2k-40kHz+   [φ19mm リボン/AMT×1 上向き(40kHz以上)]</text>
-<line x1="150" y1="950" x2="570" y2="950" stroke="#111" stroke-width="1.6" />
-<rect x="198" y="930" width="64" height="40" fill="#fff"/><line x1="200" y1="950" x2="225" y2="950" stroke="#111" stroke-width="1.6" /><line x1="235" y1="950" x2="260" y2="950" stroke="#111" stroke-width="1.6" /><line x1="225" y1="934" x2="225" y2="966" stroke="#111" stroke-width="2.4" /><line x1="235" y1="934" x2="235" y2="966" stroke="#111" stroke-width="2.4" /><text x="230" y="926" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">C 3.01µF</text>
-<path d="M280,950 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 " fill="none" stroke="#111" stroke-width="1.8"/><line x1="280" y1="1010" x2="280" y2="1035" stroke="#111" stroke-width="1.6" /><text x="294" y="986" font-size="12" text-anchor="start" font-weight="normal" fill="#111">L 0.05mH</text>
-<rect x="400" y="944" width="40" height="12" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="420" y="938" font-size="11" text-anchor="middle" font-weight="normal" fill="#111">Rs</text>
-<line x1="475" y1="950" x2="475" y2="970" stroke="#111" stroke-width="1.6" /><rect x="469" y="970" width="12" height="40" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="487" y="994" font-size="11" text-anchor="start" font-weight="normal" fill="#111">Rp</text><line x1="475" y1="1010" x2="475" y2="1035" stroke="#111" stroke-width="1.6" />
-<rect x="350" y="916" width="180" height="118" fill="none" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="6 4"/>
-<text x="440" y="1050" font-size="11" text-anchor="middle" font-weight="normal" fill="#c0392b">VR5 24接点L-pad(8Ω) -6dB: Rs 4.0Ω / Rp 8.0Ω</text>
-<line x1="570" y1="950" x2="610" y2="950" stroke="#111" stroke-width="1.6" />
-<rect x="610" y="940" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M624,940 L640,928 L640,972 L624,960" fill="none" stroke="#111" stroke-width="1.8"/><text x="648" y="954" font-size="11" text-anchor="start" font-weight="normal" fill="#111">上向き(吊り下げ円錐で水平360°へ反射)</text>
-<line x1="624" y1="960" x2="624" y2="1035" stroke="#111" stroke-width="1.6" />
+<text x="170" y="900" font-size="15" text-anchor="start" font-weight="bold" fill="#111">WAY5  超高音  14.5k-40kHz+   [φ19mm リボン/AMT×1 上向き(40kHz以上)]</text>
+<line x1="150" y1="950" x2="680" y2="950" stroke="#111" stroke-width="1.6" />
+<rect x="198" y="930" width="64" height="40" fill="#fff"/><line x1="200" y1="950" x2="225" y2="950" stroke="#111" stroke-width="1.6" /><line x1="235" y1="950" x2="260" y2="950" stroke="#111" stroke-width="1.6" /><line x1="225" y1="934" x2="225" y2="966" stroke="#111" stroke-width="2.4" /><line x1="235" y1="934" x2="235" y2="966" stroke="#111" stroke-width="2.4" /><text x="230" y="926" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">C1 0.73µF</text>
+<path d="M280,950 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 " fill="none" stroke="#111" stroke-width="1.8"/><line x1="280" y1="1010" x2="280" y2="1035" stroke="#111" stroke-width="1.6" /><text x="294" y="986" font-size="12" text-anchor="start" font-weight="normal" fill="#111">L1 0.06mH</text>
+<rect x="308" y="930" width="64" height="40" fill="#fff"/><line x1="310" y1="950" x2="335" y2="950" stroke="#111" stroke-width="1.6" /><line x1="345" y1="950" x2="370" y2="950" stroke="#111" stroke-width="1.6" /><line x1="335" y1="934" x2="335" y2="966" stroke="#111" stroke-width="2.4" /><line x1="345" y1="934" x2="345" y2="966" stroke="#111" stroke-width="2.4" /><text x="340" y="926" font-size="12" text-anchor="middle" font-weight="normal" fill="#111">C2 1.46µF</text>
+<path d="M390,950 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 a9,7.5 0 0 1 0,15 " fill="none" stroke="#111" stroke-width="1.8"/><line x1="390" y1="1010" x2="390" y2="1035" stroke="#111" stroke-width="1.6" /><text x="404" y="986" font-size="12" text-anchor="start" font-weight="normal" fill="#111">L2 0.25mH</text>
+<rect x="510" y="944" width="40" height="12" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="530" y="938" font-size="11" text-anchor="middle" font-weight="normal" fill="#111">Rs</text>
+<line x1="585" y1="950" x2="585" y2="970" stroke="#111" stroke-width="1.6" /><rect x="579" y="970" width="12" height="40" fill="#fff" stroke="#111" stroke-width="1.8" /><text x="597" y="994" font-size="11" text-anchor="start" font-weight="normal" fill="#111">Rp</text><line x1="585" y1="1010" x2="585" y2="1035" stroke="#111" stroke-width="1.6" />
+<rect x="460" y="916" width="180" height="118" fill="none" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="6 4"/>
+<text x="550" y="1050" font-size="11" text-anchor="middle" font-weight="normal" fill="#c0392b">VR5 24接点L-pad(8Ω) -6dB: Rs 4.0Ω / Rp 8.0Ω</text>
+<line x1="680" y1="950" x2="720" y2="950" stroke="#111" stroke-width="1.6" />
+<rect x="720" y="940" width="14" height="20" fill="none" stroke="#111" stroke-width="1.8" /><path d="M734,940 L750,928 L750,972 L734,960" fill="none" stroke="#111" stroke-width="1.8"/><text x="758" y="954" font-size="11" text-anchor="start" font-weight="normal" fill="#111">上向き(吊り下げ円錐で水平360°へ反射)</text>
+<line x1="734" y1="960" x2="734" y2="1035" stroke="#111" stroke-width="1.6" />
 <line x1="200" y1="1035" x2="1560" y2="1035" stroke="#111" stroke-width="1.6" />
 <line x1="1560" y1="235" x2="1560" y2="1074" stroke="#111" stroke-width="1.6" />
 <text x="40" y="1106" font-size="12" text-anchor="start" font-weight="normal" fill="#111">L-padはフィルターの後段(ユニット側)に置くので、フィルターから見た負荷は減衰量によらず一定(WAY1・2=4Ω、WAY3〜5=8Ω)。分割周波数が動かない。</text>
 <text x="40" y="1124" font-size="12" text-anchor="start" font-weight="normal" fill="#111">抵抗は無誘導巻線または金属箔(バルク)、接点は金/銀メッキのロータリー。減衰 0〜-20dB(24段)+ミュート。WAY1・2は大電力(50W級)・WAY3〜5は小電力(5W級)の抵抗を選ぶ。</text>
-<text x="40" y="1142" font-size="12" text-anchor="start" font-weight="normal" fill="#111">LC値は単独LR2の理論値。実機はユニットのインピーダンス曲線で変わるためゾベル回路と実測による調整が必須(初期値)。</text>
+<text x="40" y="1142" font-size="12" text-anchor="start" font-weight="normal" fill="#111">LC値は単独LR4(ラダー)の理論値(分割ごと)。実機はユニットのインピーダンス曲線で変わるためゾベル回路と実測による調整が必須(初期値)。</text>
 <text x="40" y="1160" font-size="12" text-anchor="start" font-weight="normal" fill="#111">複数WAYの並列接続: アンプから見た負荷は帯域内で各WAYの4Ω/8Ω。パワーアンプは4Ω負荷対応を選ぶ。</text>
 </svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1700 1180" width="1700" height="1180" font-family="Meiryo,Yu Gothic,sans-serif">
 <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#c0392b"/></marker></defs>
@@ -141,37 +157,37 @@
 <text x="950" y="152" font-size="13" text-anchor="start" font-weight="bold" fill="#111">帯域</text>
 <text x="1090" y="152" font-size="13" text-anchor="start" font-weight="bold" fill="#111">方式</text>
 <text x="1300" y="152" font-size="13" text-anchor="start" font-weight="bold" fill="#111">ユニット</text>
-<text x="1460" y="152" font-size="13" text-anchor="start" font-weight="bold" fill="#111">分割(LR2)</text>
+<text x="1460" y="152" font-size="13" text-anchor="start" font-weight="bold" fill="#111">分割(LR4)</text>
 <line x1="900" y1="158" x2="1640" y2="158" stroke="#111" stroke-width="0.8" />
 <text x="900" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">1</text>
-<text x="950" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">20-60Hz</text>
+<text x="950" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">20-150Hz</text>
 <text x="1090" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">対向2個+隙間20mm</text>
 <text x="1300" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">φ200×2(8in)</text>
-<text x="1460" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">LP 60Hz</text>
+<text x="1460" y="178" font-size="13" text-anchor="start" font-weight="normal" fill="#111">LP 150Hz</text>
 <line x1="900" y1="184" x2="1640" y2="184" stroke="#111" stroke-width="0.8" />
 <text x="900" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">2</text>
-<text x="950" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">60-600Hz</text>
+<text x="950" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">150-580Hz</text>
 <text x="1090" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">対向2個+隙間12mm</text>
 <text x="1300" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">φ130×2(5in)</text>
-<text x="1460" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP60 / LP600Hz</text>
+<text x="1460" y="204" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP150 / LP580Hz</text>
 <line x1="900" y1="210" x2="1640" y2="210" stroke="#111" stroke-width="0.8" />
 <text x="900" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">3</text>
-<text x="950" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">0.6-4.2kHz</text>
+<text x="950" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">0.58-4.4kHz</text>
 <text x="1090" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">上向き+吊り円錐</text>
 <text x="1300" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">φ75×1</text>
-<text x="1460" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP600 / LP4.2k</text>
+<text x="1460" y="230" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP580 / LP4.4k</text>
 <line x1="900" y1="236" x2="1640" y2="236" stroke="#111" stroke-width="0.8" />
 <text x="900" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">4</text>
-<text x="950" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">4.2-13.2kHz</text>
+<text x="950" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">4.4-14.5kHz</text>
 <text x="1090" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">上向き+吊り円錐</text>
 <text x="1300" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">φ25×1</text>
-<text x="1460" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP4.2k / LP13.2k</text>
+<text x="1460" y="256" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP4.4k / LP14.5k</text>
 <line x1="900" y1="262" x2="1640" y2="262" stroke="#111" stroke-width="0.8" />
 <text x="900" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">5</text>
-<text x="950" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">13.2k-40kHz+</text>
+<text x="950" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">14.5k-40kHz+</text>
 <text x="1090" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">上向き+吊り円錐</text>
 <text x="1300" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">φ19リボン×1</text>
-<text x="1460" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP13.2kHz</text>
+<text x="1460" y="282" font-size="13" text-anchor="start" font-weight="normal" fill="#111">HP14.5kHz</text>
 <line x1="900" y1="288" x2="1640" y2="288" stroke="#111" stroke-width="0.8" />
 <text x="900" y="340" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・WAY1・2: 2個のコーンが同時に隙間へ向かう押し合い配線(片方を逆極性)。隙間が小さいほど圧縮</text>
 <text x="900" y="360" font-size="13" text-anchor="start" font-weight="normal" fill="#111">比が上がり風速が増す→ 超低音は隙間20mm以上を推奨(40Hz・Xmaxで風速11m/s、10mm</text>
@@ -181,9 +197,10 @@
 <text x="900" y="456" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・WAY3〜5: 円錐の半頂角45°で水平放射(反射角=2×半頂角)。縁の隙間は圧縮比1.6以下に。</text>
 <text x="900" y="476" font-size="13" text-anchor="start" font-weight="normal" fill="#111">円錐半径は帯域下限の波長に対し大きく(小さいと拡散制御が効かない)。</text>
 <text x="900" y="504" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・水平面は円対称で全方位。垂直面は各WAYの位置・開口高さでロービング(縦方向の山谷)が出る→ シミ</text>
-<text x="900" y="524" font-size="13" text-anchor="start" font-weight="normal" fill="#111">ュレーターで分割周波数を調整(仰角±30°内の最悪偏差 約24dB、分割付近に残る)。</text>
-<text x="900" y="552" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・外殻は円筒(壁のたわみは平板より小さい)。MDF25mm程度から。内部に補強リブ・吸音材。ユニット</text>
-<text x="900" y="572" font-size="13" text-anchor="start" font-weight="normal" fill="#111">背面には防振ガスケット。</text>
-<text x="900" y="600" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・実機では円錐形状・支柱・隙間を試作し、指向性測定(水平・垂直)で詰める必要がある。</text>
+<text x="900" y="524" font-size="13" text-anchor="start" font-weight="normal" fill="#111">ュレーターで分割次数・間隔・開口・円錐形状を比較(仰角±30°内のばらつき 約13〜14dB、4.4</text>
+<text x="900" y="544" font-size="13" text-anchor="start" font-weight="normal" fill="#111">kHz付近に残る。条件による差は小さい)。</text>
+<text x="900" y="572" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・外殻は円筒(壁のたわみは平板より小さい)。MDF25mm程度から。内部に補強リブ・吸音材。ユニット</text>
+<text x="900" y="592" font-size="13" text-anchor="start" font-weight="normal" fill="#111">背面には防振ガスケット。</text>
+<text x="900" y="620" font-size="13" text-anchor="start" font-weight="normal" fill="#111">・実機では円錐形状・支柱・隙間を試作し、指向性測定(水平・垂直)で詰める必要がある。</text>
 <text x="900" y="1130" font-size="12" text-anchor="start" font-weight="normal" fill="#111">※全高 約1140mm(ベース40mm含む)。寸法は図示の初期案。</text>
 </svg>

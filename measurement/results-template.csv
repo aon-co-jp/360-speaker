@@ -1,0 +1,3 @@
+date,variant_id,configuration,mic_distance_m,rotation_center,elevation_deg,file,notes
+2026-xx-xx,M07-a,"WAY3/4別々 LR4",3.0,"WAY3開口中心(z=850mm)",0,el_0.txt,
+2026-xx-xx,M07-a,"WAY3/4別々 LR4",3.0,"WAY3開口中心(z=850mm)",7.5,el_+7.5.txt,

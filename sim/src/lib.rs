@@ -171,7 +171,7 @@ pub extern "C" fn vertical(ways: usize, n_freq: usize, n_el: usize, f_lo: f64, f
 
 // ---- 拡張垂直モデル: 分割次数・開口の重み・曲面円錐(放射角の広がり) ----
 // per way (8): z_m, H_m, phi0_deg, gain_db, spread_deg, taper(0=一様,1=Hann), 0, 0 ; globals at [40]: order m (1..4 => LR2/4/6/8), nsub
-static mut V2IN: [f64; MAX_WAYS * 8 + 4] = [0.0; MAX_WAYS * 8 + 4];
+static mut V2IN: [f64; MAX_WAYS * 8 + 4] = [0.0; MAX_WAYS * 8 + 4]; // [42]=way0の入力ハイパス Hz(0=なし)
 static mut V2OUT: Vec<f64> = Vec::new();
 #[no_mangle]
 pub extern "C" fn v2_in_ptr() -> *mut f64 { std::ptr::addr_of_mut!(V2IN) as *mut f64 }
@@ -213,7 +213,8 @@ pub extern "C" fn vertical2(ways: usize, n_freq: usize, n_el: usize, f_lo: f64, 
         for w in 0..ways {
             let mut h = C(1.0, 0.0);
             if w > 0 { h = h.mul(lr_hp(f, xo[MAX_WAYS * CFG + w - 1], m)); }
-            if w + 1 < ways { h = h.mul(lr_lp(f, xo[MAX_WAYS * CFG + w], m)); }
+            if w + 1 < ways { let fc = if w == 0 && v[43] > 0.0 { v[43] } else { xo[MAX_WAYS * CFG + w] }; h = h.mul(lr_lp(f, fc, m)); } // v[43]: way0(既存スピーカー)の独立した高域上限
+            if w == 0 && v[42] > 0.0 { h = h.mul(lr_hp(f, v[42], m)); } // 1WAYハイブリッドSTw等の入力ハイパス
             // 奇数次(LR2/LR6)は隣接バンドが逆相で合成されるため、1つおきに極性を反転して配線する
             if m % 2 == 1 && w % 2 == 1 { h = h.scale(-1.0); }
             band[w] = h.scale(10f64.powf(v[w * 8 + 3] / 20.0));

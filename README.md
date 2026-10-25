@@ -52,6 +52,22 @@ copy target\wasm32-unknown-unknown\release\speaker360_sim.wasm ..\web\sim.wasm
 
 [JBLユニットの購入先を探す(外部検索)](https://www.google.com/search?q=JBL%E3%80%80%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%E8%B3%BC%E5%85%A5&ie=UTF-8)
 
+**ユニットを実際に通販しているサイト(2026-10-25 検索で確認できたもの)**
+
+| サイト | 確認できたブランド | 備考 |
+|---|---|---|
+| [ヨドバシ.com(日本)](https://www.yodobashi.com/maker/0000008439/) | Scan-Speak | 掲載の多くが販売終了表示。在庫は要確認 |
+| [楽天市場(日本)](https://www.rakuten.co.jp/category/568345/) | Scan-Speak・SB Acoustics・Dayton Audio(出品ショップによる) | ショップごとに在庫・価格が異なる |
+| [RSコンポーネンツ(日本)](https://jp.rs-online.com/web/c/computing-peripherals/audio-video/speaker-drivers/) | Visaton等の汎用ユニット | 汎用品が中心 |
+| [Falcon Acoustics(英国)](https://www.falconacoustics.co.uk/) | BlieSMa・SB Acoustics・Scan-Speak | 海外発送の可否・送料は要確認 |
+| [Masori(ドイツ)](https://masori.de/en/) | Scan-Speak・SB Acoustics・Focal | 海外発送の可否・送料は要確認 |
+| [Sound Imports(欧州)](https://www.soundimports.eu/) | SEAS・Radian・Dayton Audio | 海外発送の可否・送料は要確認 |
+| [Willy's HiFi](https://willys-hifi.com/) | Scan-Speak | 海外発送の可否・送料は要確認 |
+| [Toutlehautparleur(フランス)](https://en.toutlehautparleur.com/) | FOSTEX | 海外発送の可否・送料は要確認 |
+| [Lautsprechershop.de(ドイツ)](https://lautsprechershop.de/hifi/fostex_en.htm) | FOSTEX | 海外発送の可否・送料は要確認 |
+
+Tang Band、Peerless/Vifa、Accuton、Monacor、Eton、Eminence、Celestion、Beyma、B&C Speakers、TAD、Tannoy、パイオニア、Focal(単品)は、今回の検索では取扱店を確認できませんでした(外部検索リンクを使ってください)。 在庫・価格・販売の可否は各サイトで必ず確認してください。
+
 **他ブランドのスピーカーユニット(外部検索リンク)**
 
 - [Scan-Speakユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Scan-Speak%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)

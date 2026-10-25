@@ -31,6 +31,12 @@ table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--bd
 <h2>各WAYの構造・ボリューム(下→上)</h2>
 <div id="ctl"></div>
 <h2>ツィーター/スーパーツィーターの振動板材質 <span class="note">(単体・ハイブリッド(2種)・トライブリッド(3種)。比率は%。目安式であり実測の代わりではない)</span></h2>
+<h2>ユニットの選択と購入リスト(FOSTEX・Scan-Speak・BlieSMa・SB Acoustics) <span class="note">(数値は販売店・DB記載。購入は各社公式/正規取扱店のリンク先で行います。このページはカード決済を扱いません)</span></h2>
+<div id="fx"></div>
+<div class="row"><button id="fxcopy">購入リスト(CSV)をコピー</button> <span class="note" id="fxgate"></span></div>
+<h3>ユニット一覧(シミュレーションをしなくても、各行の「購入する」から取扱店の購入ページへ進めます。カード決済は取扱店側で行います)</h3>
+<div id="fxcat"></div>
+<pre class="note" id="fxlist" style="white-space:pre-wrap"></pre>
 <div id="matp"></div>
 <div id="cand"></div>
 <div class="grid">
@@ -102,7 +108,7 @@ const SIZES=[[150,165,200,250,300,380],[100,130,165,200],[50,75,100,130],[19,25,
 const XMAX={150:8,165:8,200:10,250:12,300:14,380:16,100:3,130:5,165.1:6,50:1.5,75:3,28:.6,34:.8,13:.2,10:.15};
 const NF=200,NE=121,FLO=20,FHI=40000;let W,xo=[],data,n=5,dv=[];
 function lab(t,k,v,w){return t+'<input data-k="'+k+'" type="number" step="any" value="'+v+'" style="width:'+(w||4.5)+'em">'}
-function build(){const wv=$('ways').value;xo=XO[wv].slice();n={'1h':1,'2h':2,'3h':3,'4h':4}[wv]||+wv;dv=(wv=='1h'?[HYB1]:wv=='4h'?[WAYD[0],WAYD[1],WAYD[2],HYB]:wv=='3h'?[WOOFH,WAYD[2],HYB]:wv=='2h'?[WOOFH,HYB2]:WAYD.slice(0,n)).map(d=>JSON.parse(JSON.stringify(d)));
+function build(){setTimeout(()=>{if(typeof fxUI=='function')fxUI()},0);const wv=$('ways').value;xo=XO[wv].slice();n={'1h':1,'2h':2,'3h':3,'4h':4}[wv]||+wv;dv=(wv=='1h'?[HYB1]:wv=='4h'?[WAYD[0],WAYD[1],WAYD[2],HYB]:wv=='3h'?[WOOFH,WAYD[2],HYB]:wv=='2h'?[WOOFH,HYB2]:WAYD.slice(0,n)).map(d=>JSON.parse(JSON.stringify(d)));
  const c=$('ctl');c.innerHTML='';
  dv.forEach((d,i)=>{const r=document.createElement('div');r.className='way';r.dataset.i=i;
   const p=d.p;const sz=SIZES[d.sk];let h='<b>'+d.n+'</b><span>口径<select data-d="1">'+sz.map(v=>'<option value="'+v+'"'+(v==d.D?' selected':'')+'>'+(d.k=='s'?(v/25.4).toFixed(1)+'in('+v+')':v+'mm')+'</option>').join('')+'</select> '+(d.k=='s'?'<i>対向2個+隙間</i> ':'<i>上向き+吊り円錐</i> ')+lab(' 高さz mm','z',d.z,5);
@@ -144,7 +150,7 @@ function draw(){const fg=getComputedStyle(document.body).color;
  c.strokeStyle='#2a6df4';c.beginPath();for(let f=0;f<NF;f++){const x=f*900/NF;f?c.lineTo(x,y(data[f*NE+e0])):c.moveTo(x,y(data[f*NE+e0]))}c.stroke();
  c.strokeStyle='#e8851a';c.beginPath();for(let f=0;f<NF;f++){const arr=[];for(let k=lo;k<=hi;k++)arr.push(data[f*NE+k]);arr.sort((x,y)=>x-y);const dev=arr[Math.floor(arr.length*0.9)]-arr[Math.floor(arr.length*0.1)];const fr=FLO*Math.pow(FHI/FLO,f/(NF-1));if(fr>=FMIN()&&fr<=FMAX()&&dev>worst){worst=dev;wf=fr}const x=f*900/NF,yy=240-Math.min(dev,30)/30*240;f?c.lineTo(x,yy):c.moveTo(x,yy)}c.stroke();
  $('sum').textContent='100Hz〜12kHzの仰角±30°(聴く高さ)内のばらつき(10〜90パーセンタイル幅)の最悪値: '+worst.toFixed(1)+' dB @ '+Math.round(wf)+' Hz。小さいほど縦方向が均一。(橙=上記ばらつき、縦軸0〜30dB。狭い深いノッチは含めない。水平方向は円対称で全方位同一)';
- cost();if(meas&&!draw.fit)compare()}
+ cost();if(meas&&!draw.fit)compare();if(typeof fxList=='function')fxList()}
 const VOL={'アナログ ステップ式(目盛り付きロータリー)':1800,'モーター付き可変抵抗(リモコン対応)':1500,'デジタル(エンコーダ+ボリュームIC/DSP)':400,'ハイブリッド(エンコーダ+アナログ減衰IC/リレー、目盛りリング付き) 推奨案':1100};
 function cost(){const qty=+$('qty').value,pair=+$('pair').value,price=+$('price').value,base=+$('base').value,fixed=+$('fixed').value,ext=$('mode').value=='ext',ampc=+$('ampc').value,term=+$('term').value,pch=+$('prechas').value,pp=+$('preprice').value;
  // 必要アンプ出力(WAYごと): P[W]=10^((目標-能率-10log n+20log d)/10), d=2m, 非コヒーレント加算
@@ -193,6 +199,29 @@ fetch('materials.json').then(r=>r.json()).then(j=>{MATS=j.materials;matUI();load
 function loadCand(){fetch('data/materials-candidates.json').then(r=>r.ok?r.json():null).then(j=>{if(!j||!j.items)return;const el=$('cand');if(!el)return;
  const show=j.items.slice(0,40);el.innerHTML='<p class="note">自動収集(毎朝)の新素材候補 '+j.items.length+'件(最終更新 '+(j.updated||'?')+')。<b>未検証</b>。数値が本文から抽出できたものだけ「試算に使う」で仮の材質に追加できます。</p>'+show.map((x,k)=>'<div class="note">・<a href="'+x.url+'" target="_blank" rel="noopener noreferrer">'+x.title.replace(/</g,'&lt;')+'</a> ('+(x.first_seen||'')+')'+(x.E&&x.rho?' E≈'+x.E+'GPa, ρ≈'+x.rho+'kg/m³ <button data-c="'+k+'">試算に使う</button>':'')+'</div>').join('');
  el.onclick=e=>{const b=e.target.closest('button[data-c]');if(!b)return;const x=show[+b.dataset.c];MATS.push({id:'cand'+b.dataset.c,name:x.title.slice(0,24),E:x.E,rho:x.rho,nu:0.3,eta:0.01,temp:true});matUI()}}).catch(()=>{})}
+
+
+// ---- FOSTEXユニット選択・購入リスト ----
+var FX=[];
+function roleOf(d,i){if(d.hyb)return 'hybrid';if(d.k=='s')return d.D>=250||i==0&&(dv.length>2)?'sub':'bass';if(d.t=='cone')return 'mid';return 'high'}
+function fxUI(){const box=$('fx');if(!box||!FX.length)return;box.innerHTML='';
+ dv.forEach((d,i)=>{const role=roleOf(d,i),opts=FX.filter(u=>u.roles.includes(role)||(role=='sub'&&u.roles.includes('bass')));
+  const div=document.createElement('div');div.className='way';div.dataset.i=i;
+  const sel=d.fx||'';const u=FX.find(x=>x.id==sel);
+  div.innerHTML='<b>'+d.n.replace(/\(.*$/,'')+'</b><span>ユニット<select data-f="1"><option value="">(未選択)</option>'+opts.map(x=>'<option value="'+x.id+'"'+(x.id==sel?' selected':'')+'>'+x.name+'</option>').join('')+'</select>'+
+   (u?' <span class="note">'+(u.fs?'Fs '+u.fs+'Hz / Qts '+u.qts+' / Vas '+u.vas+'L':'')+(u.xmax?' / Xmax '+u.xmax+'mm':'')+(u.note?' / '+u.note:'')+' ・ <a href="'+u.src+'" target="_blank" rel="noopener noreferrer">出典</a> ・ <a href="https://www.fostex.jp/?s='+encodeURIComponent(u.id)+'" target="_blank" rel="noopener noreferrer">FOSTEX公式で検索</a></span>':(opts.length?'':'<span class="note"> この用途のFOSTEX候補なし(docs/UNITS.md参照)</span>'))+'</span><span></span>';
+  box.appendChild(div)});
+ box.onchange=e=>{const t=e.target;if(!t.dataset.f)return;const i=+t.closest('.way').dataset.i,d=dv[i],u=FX.find(x=>x.id==t.value);d.fx=t.value;
+  if(u&&u.D){const sz=SIZES[d.sk],near=sz.reduce((a,b)=>Math.abs(b-u.D)<Math.abs(a-u.D)?b:a);setSize(d,i,near);if(u.xmax)d.p.xm=u.xmax;const row=$('ctl').children[i];const sl=row&&row.querySelector('select[data-d]');if(sl)sl.value=near;build2(i)}
+  if(u&&u.fs&&i<3){const k=Math.min(i,2);DRV[k]={...DRV[k],fs:u.fs,q:u.qts,v:u.vas};if(+$('ew').value==k)eload()}
+  fxUI();fxList();run()};fxList()}
+function fxList(){const rows=[['WAY','ブランド','型番','数量(1本)','数量(左右SET)','購入先URL']];let any=false;
+ dv.forEach((d,i)=>{const u=FX.find(x=>x.id==d.fx);if(!u)return;any=true;const q=(d.k=='s')?2:1;rows.push([d.n.replace(/\(.*$/,''),u.brand,u.id,q,q*2,u.buy])});
+ $('fxlist').textContent=any?rows.map(r=>r.join(',')).join('\n'):'FOSTEXユニットを選ぶと、購入リストがここに出ます。';
+ const sumTxt=$('sum').textContent,m=sumTxt.match(/最悪値: ([\d.]+) dB/),v=m?+m[1]:NaN;
+ $('fxgate').textContent=!any?'':(v<=6?'✓ 縦のばらつき '+v.toFixed(1)+'dB: 目標(6dB以下)を満たす。購入リストを作成できます。':'縦のばらつき '+(isNaN(v)?'?':v.toFixed(1))+'dB: 目標(6dB以下)には未達。同軸配置などで改善してから購入を検討してください(購入リスト自体は作成可)。')}
+$('fxcopy').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText($('fxlist').textContent)};
+fetch('units.json').then(r=>r.json()).then(j=>{FX=j.units;fxUI();$('fxcat').innerHTML='<table><tr><th>ブランド/型番</th><th>主な仕様(掲載元記載)</th><th>用途</th><th></th></tr>'+FX.map(u=>'<tr><td>'+u.name+'</td><td style="text-align:left">'+(u.fs?'Fs '+u.fs+'Hz ':'')+(u.qts?'/ Qts '+u.qts+' ':'')+(u.vas?'/ Vas '+u.vas+'L ':'')+(u.note?'/ '+u.note:'')+' <a href="'+u.src+'" target="_blank" rel="noopener noreferrer">出典</a></td><td>'+u.roles.join('/')+'</td><td><a href="'+u.buy+'" target="_blank" rel="noopener noreferrer"><b>購入する</b></a></td></tr>').join('')+'</table>'}).catch(()=>{});
 
 // ---- 実測データ取り込み・較正 ----
 function FMIN(){return $('ways').value=='1h'?(+$('hp').value||10000)*1.1:100}

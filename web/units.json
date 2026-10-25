@@ -1,0 +1,235 @@
+{
+ "updated": "2026-10-25",
+ "note": "FOSTEXおよび他社ユニットのうち、販売店・メーカー資料・第三者DBで数値が確認できたものだけを載せる。値は掲載元で異なることがあるため、購入前に必ず各社公式データシートで確認すること。Sd・Xmaxが無いものは画面側の口径からの推定を使う。",
+ "units": [
+  {
+   "id": "FW208HS",
+   "name": "FOSTEX FW208HS",
+   "roles": [
+    "sub",
+    "bass"
+   ],
+   "D": 200,
+   "fs": 32,
+   "qts": 0.4,
+   "vas": 42.7,
+   "xmax": 9,
+   "src": "https://speakerboxlite.com/es/subwoofers/fostex-fw208hs/specifications",
+   "brand": "FOSTEX",
+   "buy": "https://www.fostex.jp/?s=FW208HS"
+  },
+  {
+   "id": "FW305",
+   "name": "FOSTEX FW305",
+   "roles": [
+    "sub"
+   ],
+   "D": 300,
+   "fs": 25,
+   "qts": 0.25,
+   "vas": 254,
+   "src": "https://en.toutlehautparleur.com/speaker-fostex-fw305-8-ohm-312-mm.html",
+   "brand": "FOSTEX",
+   "buy": "https://www.fostex.jp/?s=FW305"
+  },
+  {
+   "id": "FE206EN",
+   "name": "FOSTEX FE206EN",
+   "roles": [
+    "bass"
+   ],
+   "D": 200,
+   "fs": 45,
+   "qts": 0.19,
+   "vas": 71.0,
+   "src": "https://speakerboxlite.com/manufacturers/fostex/subwoofers",
+   "brand": "FOSTEX",
+   "buy": "https://www.fostex.jp/?s=FE206EN"
+  },
+  {
+   "id": "FF125WK",
+   "name": "FOSTEX FF125WK",
+   "roles": [
+    "bass",
+    "mid"
+   ],
+   "D": 130,
+   "fs": 67,
+   "qts": 0.42,
+   "vas": 7.27,
+   "src": "https://en.toutlehautparleur.com/fullrange-speaker-fostex-ff125wk-8-ohm-117-x-117-mm.html",
+   "brand": "FOSTEX",
+   "buy": "https://www.fostex.jp/?s=FF125WK"
+  },
+  {
+   "id": "FE108NS",
+   "name": "FOSTEX FE108NS",
+   "roles": [
+    "bass",
+    "mid"
+   ],
+   "D": 100,
+   "fs": 75,
+   "qts": 0.32,
+   "vas": 5.4,
+   "note": "Vasは掲載元で5.37〜5.73Lと不一致",
+   "src": "https://loudspeakerdatabase.com/Fostex/FE108NS",
+   "brand": "FOSTEX",
+   "buy": "https://www.fostex.jp/?s=FE108NS"
+  },
+  {
+   "id": "FF105WK",
+   "name": "FOSTEX FF105WK",
+   "roles": [
+    "mid"
+   ],
+   "D": 100,
+   "fs": 75,
+   "qts": 0.41,
+   "vas": 4.85,
+   "src": "https://speakerboxlite.com/manufacturers/fostex/subwoofers",
+   "brand": "FOSTEX",
+   "buy": "https://www.fostex.jp/?s=FF105WK"
+  },
+  {
+   "id": "FE83EN",
+   "name": "FOSTEX FE83EN",
+   "roles": [
+    "mid"
+   ],
+   "D": 75,
+   "fs": 165,
+   "qts": 0.84,
+   "vas": 0.7,
+   "note": "再生 f0〜30kHz、88dB",
+   "src": "https://kyohritsu.com/eclib/OTHER/CATALOG/AUDIO/fostexcatalog.pdf",
+   "brand": "FOSTEX",
+   "buy": "https://www.fostex.jp/?s=FE83EN"
+  },
+  {
+   "id": "FF85WK",
+   "name": "FOSTEX FF85WK",
+   "roles": [
+    "mid"
+   ],
+   "D": 75,
+   "fs": 115,
+   "qts": 0.55,
+   "vas": 1.04,
+   "note": "バスレフ専用、115〜28kHz",
+   "src": "https://en.toutlehautparleur.com/fullrange-speaker-fostex-ff85wk-8-ohm-83-x-83-mm.html",
+   "brand": "FOSTEX",
+   "buy": "https://www.fostex.jp/?s=FF85WK"
+  },
+  {
+   "id": "PT20K",
+   "name": "FOSTEX PT20K",
+   "roles": [
+    "high",
+    "hybrid"
+   ],
+   "D": 19,
+   "note": "φ20mmドーム、3〜32kHz。40kHzには届かない",
+   "src": "https://joshinweb.jp/diy/35743/4589804900342.html",
+   "brand": "FOSTEX",
+   "buy": "https://www.fostex.jp/?s=PT20K"
+  },
+  {
+   "id": "T90A",
+   "name": "FOSTEX T90A",
+   "roles": [
+    "high",
+    "hybrid"
+   ],
+   "note": "仕様は今回の調査で未確認。公式で確認すること",
+   "src": "https://www.fostex.jp/wp/wp-content/uploads/T90A-SE_owners_manual.pdf",
+   "brand": "FOSTEX",
+   "buy": "https://www.fostex.jp/?s=T90A"
+  },
+  {
+   "id": "D3004-664000",
+   "brand": "Scan-Speak",
+   "name": "Scan-Speak D3004/664000",
+   "roles": [
+    "high",
+    "hybrid"
+   ],
+   "D": 26,
+   "fs": 500,
+   "note": "ベリリウム1インチ、平坦に40kHz超、91.5dB、4Ω。メーカー販売終了との販売店記載(代替: SB29BAC-C000-4)",
+   "src": "https://img.audiomania.ru/data/scanspeak_d3004664000_1.pdf",
+   "buy": "https://willys-hifi.com/products/scanspeak-d3004-664000-tweeter"
+  },
+  {
+   "id": "T25B-6",
+   "brand": "BlieSMa",
+   "name": "BlieSMa T25B-6",
+   "roles": [
+    "high",
+    "hybrid"
+   ],
+   "D": 25,
+   "note": "ベリリウム25mm、推奨2.2〜40kHz",
+   "src": "https://www.falconacoustics.co.uk/drive-units-1/bliesma-t25b-6.html",
+   "buy": "https://www.falconacoustics.co.uk/drive-units-1/bliesma-t25b-6.html"
+  },
+  {
+   "id": "T34B-4",
+   "brand": "BlieSMa",
+   "name": "BlieSMa T34B-4",
+   "roles": [
+    "high",
+    "hybrid"
+   ],
+   "D": 34,
+   "note": "ベリリウム34mm、4Ω、97.5dB、推奨1.3〜40kHz",
+   "src": "https://falconacoustics.co.uk/drive-units-1/bliesma-loudspeakers-drive-units/bliesma-t34b-4.html",
+   "buy": "https://falconacoustics.co.uk/drive-units-1/bliesma-loudspeakers-drive-units/bliesma-t34b-4.html"
+  },
+  {
+   "id": "M74B-6",
+   "brand": "BlieSMa",
+   "name": "BlieSMa M74B-6",
+   "roles": [
+    "mid"
+   ],
+   "D": 75,
+   "fs": 440,
+   "note": "ベリリウム74mmミッド、推奨 Fs(440Hz)〜8kHz",
+   "src": "https://www.falconacoustics.co.uk/bliesma-m74b-6.html",
+   "buy": "https://www.falconacoustics.co.uk/bliesma-m74b-6.html"
+  },
+  {
+   "id": "TW29BN-B",
+   "brand": "SB Acoustics",
+   "name": "SB Acoustics Satori TW29BN-B",
+   "roles": [
+    "high",
+    "hybrid"
+   ],
+   "D": 28,
+   "note": "ベリリウムドーム、40kHzまで再生可能と記載",
+   "src": "https://masori.de/en/products/satori-tw29-bn-b-beryllium",
+   "buy": "https://masori.de/en/products/satori-tw29-bn-b-beryllium"
+  },
+  {
+   "id": "TW29BNWG-4",
+   "brand": "SB Acoustics",
+   "name": "SB Acoustics Satori TW29BNWG-4",
+   "roles": [
+    "high",
+    "hybrid"
+   ],
+   "D": 28,
+   "fs": 700,
+   "note": "ベリリウムドーム+導波管(フェース径170mm)、Fs 700Hz",
+   "src": "https://www.falconacoustics.co.uk/tw29bnwg-4-satori-tweeter-by-sb-acoustics.html",
+   "buy": "https://www.falconacoustics.co.uk/tw29bnwg-4-satori-tweeter-by-sb-acoustics.html"
+  }
+ ],
+ "notes": [
+  "40kHz以上の超高音は、ベリリウム系(BlieSMa・SB Acoustics・Scan-Speak)が候補。FOSTEXの確認できた製品は32kHzまで。",
+  "購入は各社公式サイトおよび正規取扱店で行う。このページでは決済を扱わない(下の購入先リンクを使う)。",
+  "FOCAL・TAD・B&W等の完成品スピーカー用ユニットは単品販売の確認ができず、対象外(docs/UNITS.md)。"
+ ]
+}

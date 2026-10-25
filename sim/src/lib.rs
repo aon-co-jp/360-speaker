@@ -123,3 +123,48 @@ pub extern "C" fn compute(ways: usize, n_freq: usize, n_ang: usize, f_lo: f64, f
     }
     out.len()
 }
+
+// ---- 垂直面(仰角)の指向性: 縦に積んだ各WAYの開口 ----
+// per way: z_m, aperture_h_m, emission_elev_deg, gain_db ; crossovers reuse IN tail
+static mut VIN: [f64; MAX_WAYS * 4] = [0.0; MAX_WAYS * 4];
+static mut VOUT: Vec<f64> = Vec::new();
+#[no_mangle]
+pub extern "C" fn v_in_ptr() -> *mut f64 { std::ptr::addr_of_mut!(VIN) as *mut f64 }
+#[no_mangle]
+pub extern "C" fn v_out_ptr() -> *const f64 { unsafe { (*std::ptr::addr_of!(VOUT)).as_ptr() } }
+
+/// Output: n_freq * n_el dB, elevation -90..+90 deg. Each way is a uniform line aperture of height H
+/// radiating toward `emission_elev`; positions add the stacking phase.
+#[no_mangle]
+pub extern "C" fn vertical(ways: usize, n_freq: usize, n_el: usize, f_lo: f64, f_hi: f64) -> usize {
+    let ways = ways.clamp(1, MAX_WAYS);
+    let cfg = unsafe { *std::ptr::addr_of!(IN) };
+    let v = unsafe { *std::ptr::addr_of!(VIN) };
+    let out = unsafe { &mut *std::ptr::addr_of_mut!(VOUT) };
+    out.clear();
+    for fi in 0..n_freq {
+        let t = fi as f64 / (n_freq.max(2) - 1) as f64;
+        let f = f_lo * (f_hi / f_lo).powf(t);
+        let k = 2.0 * PI * f / 343.0;
+        let mut band = [C(1.0, 0.0); MAX_WAYS];
+        for w in 0..ways {
+            let mut h = C(1.0, 0.0);
+            if w > 0 { h = h.mul(lr4_hp(f, cfg[MAX_WAYS * CFG + w - 1])); }
+            if w + 1 < ways { h = h.mul(lr4_lp(f, cfg[MAX_WAYS * CFG + w])); }
+            band[w] = h.scale(10f64.powf(v[w * 4 + 3] / 20.0));
+        }
+        for ei in 0..n_el {
+            let el = (-90.0 + 180.0 * ei as f64 / (n_el - 1) as f64).to_radians();
+            let mut sum = C(0.0, 0.0);
+            for w in 0..ways {
+                let (z, hh, phi0) = (v[w * 4], v[w * 4 + 1], v[w * 4 + 2].to_radians());
+                let x = k * hh / 2.0 * (el.sin() - phi0.sin());
+                let d = if x.abs() < 1e-6 { 1.0 } else { x.sin() / x };
+                let ph = k * z * el.sin();
+                sum = sum.add(band[w].mul(C(ph.cos(), ph.sin())).scale(d));
+            }
+            out.push(20.0 * sum.abs().max(1e-9).log10());
+        }
+    }
+    out.len()
+}

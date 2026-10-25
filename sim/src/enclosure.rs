@@ -156,3 +156,97 @@ mod tests {
         }
     }
 }
+
+// ---- 対向ユニットの隙間(環状スリット) ----
+// in: n_drivers sd_cm2 xmax_mm r_throat_mm gap_mm r_mouth_mm gap_mouth_mm f_low_hz u_lim
+// out: s_throat_cm2 compression_ratio u_at_xmax s_mouth_cm2 f_res spl_limit_slot spl_limit_xmax slot_limited(0/1)
+static mut SIN: [f64; 9] = [0.0; 9];
+static mut SOUT: [f64; 8] = [0.0; 8];
+#[no_mangle]
+pub extern "C" fn slot_in_ptr() -> *mut f64 { std::ptr::addr_of_mut!(SIN) as *mut f64 }
+#[no_mangle]
+pub extern "C" fn slot_out_ptr() -> *const f64 { std::ptr::addr_of!(SOUT) as *const f64 }
+
+fn spl_from_vd(vd: f64, f: f64) -> f64 {
+    let w = 2.0 * PI * f;
+    20.0 * (RHO * w * w * vd / (4.0 * PI) / 2f64.sqrt() / 2e-5).log10()
+}
+
+#[no_mangle]
+pub extern "C" fn slot() -> usize {
+    let i = unsafe { *std::ptr::addr_of!(SIN) };
+    let o = unsafe { &mut *std::ptr::addr_of_mut!(SOUT) };
+    let (n, sd, xm, rt, g0, rm, g1, f, ulim) = (i[0], i[1] * 1e-4, i[2] * 1e-3, i[3] * 1e-3, i[4] * 1e-3, i[5] * 1e-3, i[6] * 1e-3, i[7], if i[8] > 0.0 { i[8] } else { 20.0 });
+    let sd_tot = n * sd; // push-pull: both cones move in together
+    let s_th = 2.0 * PI * rt * g0;
+    let s_mo = 2.0 * PI * rm * g1;
+    let vd = sd_tot * xm;
+    let u = 2.0 * PI * f * vd / s_th;
+    // radial duct of constant gap: acoustic mass M = rho/(2 pi g) ln(rm/rt); cavity between cones
+    let gm = (g0 * g1).sqrt();
+    let m = RHO / (2.0 * PI * gm) * (rm / rt).ln();
+    let vf = PI * rt * rt * g0;
+    let c = vf / (RHO * C0 * C0);
+    let fres = 1.0 / (2.0 * PI * (m * c).sqrt());
+    let vd_slot = ulim * s_th / (2.0 * PI * f);
+    o[0] = s_th * 1e4;
+    o[1] = sd_tot / s_th;
+    o[2] = u;
+    o[3] = s_mo * 1e4;
+    o[4] = fres;
+    o[5] = spl_from_vd(vd_slot.min(vd), f);
+    o[6] = spl_from_vd(vd, f);
+    o[7] = if vd_slot < vd { 1.0 } else { 0.0 };
+    1
+}
+
+// ---- 吊り下げ反射円錐(上向きユニットの上) ----
+// in: r_driver_mm sd_cm2 xmax_mm alpha_deg rim_gap_mm cone_r_mm f_low_hz u_lim
+// out: elevation_deg area_exit_cm2 compression u_at_xmax aperture_h_mm cone_height_mm f_ctrl spl_limit
+static mut RIN: [f64; 8] = [0.0; 8];
+static mut ROUT: [f64; 8] = [0.0; 8];
+#[no_mangle]
+pub extern "C" fn refl_in_ptr() -> *mut f64 { std::ptr::addr_of_mut!(RIN) as *mut f64 }
+#[no_mangle]
+pub extern "C" fn refl_out_ptr() -> *const f64 { std::ptr::addr_of!(ROUT) as *const f64 }
+
+#[no_mangle]
+pub extern "C" fn reflector() -> usize {
+    let i = unsafe { *std::ptr::addr_of!(RIN) };
+    let o = unsafe { &mut *std::ptr::addr_of_mut!(ROUT) };
+    let (a, sd, xm, al, gap, rc, f, ulim) = (i[0] * 1e-3, i[1] * 1e-4, i[2] * 1e-3, i[3].to_radians(), i[4] * 1e-3, i[5] * 1e-3, i[6], if i[7] > 0.0 { i[7] } else { 20.0 });
+    // reflected ray leaves at 2*alpha from the (upward) axis => elevation above horizontal = 90 - 2*alpha
+    o[0] = 90.0 - 2.0 * i[3];
+    let a_exit = 2.0 * PI * a * gap;
+    o[1] = a_exit * 1e4;
+    o[2] = sd / a_exit;
+    let vd = sd * xm;
+    o[3] = 2.0 * PI * f * vd / a_exit;
+    o[4] = ((rc - a).max(0.0) / al.tan()) * 1e3;
+    o[5] = rc / al.tan() * 1e3;
+    o[6] = C0 / (2.0 * PI * rc);
+    let vd_lim = (ulim * a_exit / (2.0 * PI * f)).min(vd);
+    o[7] = spl_from_vd(vd_lim, f);
+    1
+}
+
+#[cfg(test)]
+mod tests2 {
+    use super::*;
+    #[test]
+    fn slot_and_reflector() {
+        // sub: 2 x 8in (Sd 220), Xmax 10, throat r 80, gap 10 / 20, mouth r 190
+        for g in [6.0, 10.0, 20.0, 40.0] {
+            unsafe { *std::ptr::addr_of_mut!(SIN) = [2.0, 220.0, 10.0, 80.0, g, 190.0, g * 1.5, 40.0, 20.0]; }
+            slot();
+            let o = unsafe { *std::ptr::addr_of!(SOUT) };
+            println!("slot gap {g}mm: S_th={:.0}cm2 CR={:.1} u={:.1}m/s fres={:.0}Hz SPLslot={:.0} SPLxmax={:.0} limited={}", o[0], o[1], o[2], o[4], o[5], o[6], o[7]);
+        }
+        for al in [35.0, 45.0, 55.0] {
+            unsafe { *std::ptr::addr_of_mut!(RIN) = [37.0, 44.0, 3.0, al, 14.0, 70.0, 600.0, 20.0]; }
+            reflector();
+            let o = unsafe { *std::ptr::addr_of!(ROUT) };
+            println!("refl alpha {al}: elev={:.0}deg Aexit={:.1}cm2 CR={:.2} u={:.1} H={:.0}mm coneH={:.0} fctrl={:.0}Hz", o[0], o[1], o[2], o[3], o[4], o[5], o[6]);
+        }
+    }
+}

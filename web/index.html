@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>360-speaker シミュレーター</title>
+<style>
+:root{--bg:#fff;--fg:#1c1c1e;--mut:#666;--bd:#d8d8dc}
+@media(prefers-color-scheme:dark){:root{--bg:#16171a;--fg:#ececf0;--mut:#9a9aa3;--bd:#33353b}}
+body{margin:0 auto;padding:16px;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif;max-width:1000px}
+h1{font-size:20px}h2{font-size:16px;margin:20px 0 6px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.way{display:grid;grid-template-columns:4.5em 1fr 4.5em;gap:8px;align-items:center;margin:4px 0;border-bottom:1px solid var(--bd);padding-bottom:4px}
+canvas{width:100%;border:1px solid var(--bd);border-radius:6px}
+select,input{font:inherit;color:inherit;background:var(--bg);border:1px solid var(--bd);border-radius:4px;padding:2px 4px}
+table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--bd);padding:4px 6px;text-align:right}td:first-child,th:first-child{text-align:left}
+.note{color:var(--mut);font-size:13px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+</style></head><body>
+<h1>360-speaker シミュレーター <span class="note">(Rust→WASM / 近似モデル)</span></h1>
+<div class="row">
+ <label>WAY数 <select id="ways"><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select></label>
+ <label>版 <select id="ver"><option value="woofer">通常ウーファー版</option><option value="super">スーパーツィーター版</option><option value="sub">サブウーファー版</option></select></label>
+ <label>マスター(左右連動) <input id="master" type="range" min="-30" max="6" value="0" step="0.5"> <span id="mv">0 dB</span></label>
+</div>
+<h2>各WAY(リング搭載数・ドライバー半径・リング半径・個別ボリューム)</h2>
+<div id="ctl"></div>
+<div class="grid">
+ <div><h2>周波数-方位(水平面, dB)</h2><canvas id="hm" width="600" height="320"></canvas></div>
+ <div><h2>極座標 <span id="pf"></span> <input id="fs" type="range" min="0" max="199" value="100"></h2><canvas id="po" width="320" height="320"></canvas></div>
+</div>
+<h2>周波数特性(青=0°、橙=全方位の最大偏差)</h2><canvas id="fr" width="900" height="240"></canvas>
+<p class="note" id="sum"></p>
+<h2>ボリューム方式とコスト・採算 <span class="note">(単価は推定の初期値。編集して使う。実見積りではない)</span></h2>
+<div class="row">
+ <label>月産台数 <input id="qty" type="number" value="200" style="width:6em"></label>
+ <label>SET組数/台 <input id="pair" type="number" value="1" style="width:4em"></label>
+ <label>販売価格/本(円) <input id="price" type="number" value="480000" style="width:8em"></label>
+ <label>1WAYあたり部材(円) <input id="base" type="number" value="38000" style="width:7em"></label>
+ <label>筐体等の固定部材/本(円) <input id="fixed" type="number" value="60000" style="width:7em"></label>
+ <label>構成 <select id="mode"><option value="int">アンプ内蔵(スピーカー側にボリューム)</option><option value="ext" selected>アンプ無し+別売プリ(推奨検討)</option></select></label>
+ <label>内蔵アンプ原価/WAY(円) <input id="ampc" type="number" value="9000" style="width:6em"></label>
+ <label>WAY別端子対/本(円) <input id="term" type="number" value="1500" style="width:5em"></label>
+ <label>プリ筐体・電源(円) <input id="prechas" type="number" value="55000" style="width:6em"></label>
+ <label>プリ販売価格(円) <input id="preprice" type="number" value="220000" style="width:7em"></label>
+</div>
+<div class="row"><label>目標最大音圧 dB@2m <input id="tspl" type="number" value="100" style="width:4em"></label>
+ <label>ドライバー能率 dB/1W/1m <input id="sens" type="number" value="86" style="width:4em"></label></div>
+<div id="amp" class="note"></div>
+<table id="cost"></table><p class="note" id="cv"></p>
+<script>
+const $=id=>document.getElementById(id);
+const XO={5:[150,600,2500,8000],4:[200,1000,5000],3:[300,3000],2:[2500],1:[]};
+const PRESET={woofer:[[6,0.07,0.12],[4,0.045,0.10],[3,0.03,0.09],[3,0.015,0.08],[2,0.01,0.07]],
+ super:[[6,0.07,0.12],[4,0.045,0.10],[3,0.03,0.09],[3,0.015,0.08],[2,0.006,0.05]],
+ sub:[[2,0.13,0.14],[6,0.07,0.12],[4,0.045,0.10],[3,0.03,0.09],[3,0.015,0.08]]};
+const NF=200,NA=180,FLO=20,FHI=20000;let W,vols=[0,0,0,0,0],cfg=[],xo=[],data,n=5;
+function build(){n=+$('ways').value;cfg=PRESET[$('ver').value].slice(0,n).map(a=>a.slice());xo=XO[n].slice();
+ const c=$('ctl');c.innerHTML='';
+ for(let i=0;i<n;i++){const d=document.createElement('div');d.className='way';
+  d.innerHTML='<b>WAY'+(i+1)+'</b><span>個数<input data-i="'+i+'" data-k="0" type="number" min="1" max="12" value="'+cfg[i][0]+'" style="width:3.5em"> 半径mm<input data-i="'+i+'" data-k="1" type="number" value="'+cfg[i][1]*1000+'" style="width:4.5em"> リングmm<input data-i="'+i+'" data-k="2" type="number" value="'+cfg[i][2]*1000+'" style="width:4.5em">'+(i<n-1?' 分割Hz<input data-x="'+i+'" type="number" value="'+xo[i]+'" style="width:5em">':'')+'<br>音量<input data-v="'+i+'" type="range" min="-20" max="6" step="0.5" value="'+vols[i]+'"></span><span id="vv'+i+'">'+vols[i]+' dB</span>';c.appendChild(d)}
+ c.oninput=e=>{const t=e.target;if(t.dataset.v!=null){vols[t.dataset.v]=+t.value;$('vv'+t.dataset.v).textContent=t.value+' dB'}
+  else if(t.dataset.x!=null)xo[t.dataset.x]=+t.value;else{const k=+t.dataset.k;cfg[t.dataset.i][k]=k==0?+t.value:+t.value/1000}run()};
+ run()}
+function run(){if(!W)return;const m=new Float64Array(W.memory.buffer,W.in_ptr(),24);
+ for(let i=0;i<5;i++){const c=cfg[i]||[1,.01,.05];m[i*4]=c[0];m[i*4+1]=c[1];m[i*4+2]=c[2];m[i*4+3]=(vols[i]||0)+ +$('master').value}
+ for(let i=0;i<4;i++)m[20+i]=xo[i]||1e4;
+ const len=W.compute(n,NF,NA,FLO,FHI);data=new Float64Array(W.memory.buffer,W.out_ptr(),len).slice();draw()}
+function col(v){const t=Math.max(0,Math.min(1,(v+40)/50));return 'hsl('+(240-240*t)+',80%,'+(25+30*t)+'%)'}
+function draw(){const fg=getComputedStyle(document.body).color;
+ let c=$('hm').getContext('2d'),w=600,h=320;for(let f=0;f<NF;f++)for(let a=0;a<NA;a++){c.fillStyle=col(data[f*NA+a]);c.fillRect(f*w/NF,a*h/NA,w/NF+1,h/NA+1)}
+ c.fillStyle='#fff';c.font='11px sans-serif';[100,1000,10000].forEach(F=>{const x=Math.log(F/FLO)/Math.log(FHI/FLO)*w;c.fillText(F>=1000?F/1000+'k':F,x,h-3)});c.fillText('0°',2,10);c.fillText('180°',2,h/2);
+ const fi=+$('fs').value;$('pf').textContent=Math.round(FLO*Math.pow(FHI/FLO,fi/(NF-1)))+' Hz';
+ c=$('po').getContext('2d');c.clearRect(0,0,320,320);c.strokeStyle='#8888';c.lineWidth=1;[10,20,30,40].forEach(r=>{c.beginPath();c.arc(160,160,r*3.6,0,7);c.stroke()});
+ c.strokeStyle='#2a6df4';c.lineWidth=2;c.beginPath();for(let a=0;a<=NA;a++){const v=data[fi*NA+a%NA];const r=Math.max(0,v+40)*3.6;const th=a/NA*2*Math.PI-Math.PI/2;const x=160+r*Math.cos(th),y=160+r*Math.sin(th);a?c.lineTo(x,y):c.moveTo(x,y)}c.stroke();
+ c=$('fr').getContext('2d');c.clearRect(0,0,900,240);c.lineWidth=1.5;let worst=0,wf=0;
+ const y=v=>240-(v+50)/70*240;c.strokeStyle='#8888';c.fillStyle=fg;for(let d=-40;d<=10;d+=10){c.beginPath();c.moveTo(0,y(d));c.lineTo(900,y(d));c.stroke();c.fillText(d+'dB',2,y(d)-2)}
+ c.strokeStyle='#2a6df4';c.beginPath();for(let f=0;f<NF;f++){const x=f*900/NF;f?c.lineTo(x,y(data[f*NA])):c.moveTo(x,y(data[f*NA]))}c.stroke();
+ c.strokeStyle='#e8851a';c.beginPath();for(let f=0;f<NF;f++){let a=-99,b=99;for(let k=0;k<NA;k++){a=Math.max(a,data[f*NA+k]);b=Math.min(b,data[f*NA+k])}const dev=a-b;const fr=FLO*Math.pow(FHI/FLO,f/(NF-1));if(fr>=100&&fr<=8000&&dev>worst){worst=dev;wf=fr}const x=f*900/NF,yy=240-Math.min(dev,30)/30*240;f?c.lineTo(x,yy):c.moveTo(x,yy)}c.stroke();
+ $('sum').textContent='100Hz〜8kHzの方位間偏差(最大−最小)の最悪値: '+worst.toFixed(1)+' dB @ '+Math.round(wf)+' Hz。小さいほど360°均一。(橙の縦軸は0〜30dB)';
+ cost()}
+const VOL={'アナログ ステップ式(目盛り付きロータリー)':1800,'モーター付き可変抵抗(リモコン対応)':1500,'デジタル(エンコーダ+ボリュームIC/DSP)':400,'ハイブリッド(エンコーダ+アナログ減衰IC/リレー、目盛りリング付き) 推奨案':1100};
+function cost(){const qty=+$('qty').value,pair=+$('pair').value,price=+$('price').value,base=+$('base').value,fixed=+$('fixed').value,ext=$('mode').value=='ext',ampc=+$('ampc').value,term=+$('term').value,pch=+$('prechas').value,pp=+$('preprice').value;
+ // 必要アンプ出力(WAYごと): P[W]=10^((目標-能率-10log n+20log d)/10), d=2m, 非コヒーレント加算
+ const t=+$('tspl').value,s=+$('sens').value;let ah='<b>外部アンプ必要出力(WAYごと, 1本あたり目安)</b>: ';
+ for(let i=0;i<n;i++){const P=Math.pow(10,(t-s-10*Math.log10(cfg[i][0])+20*Math.log10(2))/10);ah+='WAY'+(i+1)+' '+(P<10?P.toFixed(1):Math.round(P))+'W　'}
+ $('amp').innerHTML=ah+'<br>(周波数帯ごとに全帯域ほど必要でないため、実際は上記の1/2〜1/10で足りることが多い。ウーファー側を重点配分)';
+ const r=['<tr><th>方式</th><th>ボリューム部</th><th>スピーカー原価/本</th><th>'+(ext?'プリ原価':'-')+'</th><th>粗利率(SP)</th><th>'+(ext?'粗利率(プリ)':'-')+'</th><th>月粗利</th></tr>'];
+ for(const k in VOL){const knob=VOL[k]*(n+1);                        // 目盛り付きノブ=WAY数+マスター
+  const chan=2*n*(ext?900:0);                                          // プリ内の左右各WAYの出力段(推定)
+  let spUnit,preUnit=0,vol;
+  if(ext){spUnit=base*n-ampc*n+term*(n+1)+fixed-0;preUnit=knob+chan+pch;vol=knob+chan}
+  else{spUnit=base*n+knob+fixed;vol=knob}
+  const gs=(price-spUnit)/price,gp=ext?(pp-preUnit)/pp:0;
+  const gm=(price-spUnit)*qty*pair*2+(ext?(pp-preUnit)*qty*pair:0);
+  r.push('<tr><td>'+k+'</td><td>'+Math.round(vol).toLocaleString()+'円</td><td>'+Math.round(spUnit).toLocaleString()+'円</td><td>'+(ext?Math.round(preUnit).toLocaleString()+'円':'-')+'</td><td>'+(gs*100).toFixed(0)+'%</td><td>'+(ext?(gp*100).toFixed(0)+'%':'-')+'</td><td>'+Math.round(gm).toLocaleString()+'円</td></tr>')}
+ $('cost').innerHTML=r.join('');$('cv').textContent=(ext?'アンプ無し: スピーカーはWAY別端子(+サブウーファー端子)のパッシブ、プリ(別売)が個別ボリューム'+(n+1)+'個(目盛り付き)+連動マスターを持つ。':'アンプ内蔵: スピーカー側にボリューム'+(n+1)+'個。')+' 月粗利=(価格−原価)×月産×SET組数×2本(+プリ1台/SET)。粗利率35%超かつ金型・開発費を回収できるかが目安。'}
+$('master').oninput=()=>{$('mv').textContent=$('master').value+' dB';run()};
+$('ways').onchange=build;$('ver').onchange=build;$('fs').oninput=()=>data&&draw();
+['qty','pair','price','base','fixed','mode','ampc','term','prechas','preprice','tspl','sens'].forEach(i=>$(i).oninput=()=>data&&cost());
+fetch('sim.wasm').then(r=>r.arrayBuffer()).then(b=>WebAssembly.instantiate(b)).then(r=>{W=r.instance.exports;build()});
+</script></body></html>

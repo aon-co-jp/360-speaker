@@ -52,6 +52,29 @@ copy target\wasm32-unknown-unknown\release\speaker360_sim.wasm ..\web\sim.wasm
 
 [JBLユニットの購入先を探す(外部検索)](https://www.google.com/search?q=JBL%E3%80%80%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%E8%B3%BC%E5%85%A5&ie=UTF-8)
 
+**他ブランドのスピーカーユニット(外部検索リンク)**
+
+- [Scan-Speakユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Scan-Speak%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [SB Acousticsユニットの購入先を探す(外部検索)](https://www.google.com/search?q=SB%20Acoustics%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [SEASユニットの購入先を探す(外部検索)](https://www.google.com/search?q=SEAS%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [Dayton Audioユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Dayton%20Audio%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [Tang Bandユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Tang%20Band%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [Peerless/Vifaユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Peerless%20Vifa%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [Accutonユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Accuton%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [Visatonユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Visaton%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [Monacorユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Monacor%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [Etonユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Eton%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [Eminenceユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Eminence%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [Celestionユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Celestion%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [Beymaユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Beyma%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [B&C Speakersユニットの購入先を探す(外部検索)](https://www.google.com/search?q=B%26C%20Speakers%20%E3%83%89%E3%83%A9%E3%82%A4%E3%83%90%E3%83%BC%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [Radianユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Radian%20Audio%20%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [Focalユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Focal%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E5%8D%98%E5%93%81%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [TADユニットの購入先を探す(外部検索)](https://www.google.com/search?q=TAD%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [Tannoyユニットの購入先を探す(外部検索)](https://www.google.com/search?q=Tannoy%20%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [パイオニアユニットの購入先を探す(外部検索)](https://www.google.com/search?q=%E3%83%91%E3%82%A4%E3%82%AA%E3%83%8B%E3%82%A2%20%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+- [コイズミ無線・自作スピーカー用ユニットの購入先を探す(外部検索)](https://www.google.com/search?q=%E8%87%AA%E4%BD%9C%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC%20%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%20%E8%B3%BC%E5%85%A5&ie=UTF-8)
+
 ## 構成バリエーション(シミュレーターで切替)
 5WAY / 4WAY(ツィーター+スーパーツィーター統合ハイブリッド)/ 3WAY / 2WAY / **1WAY(ハイブリッドSTw単体=既存スピーカーの上に載せるトッピング用)**。
 WAY3〜5の配置は「別々」「中音+高音を同軸」「3つ同軸」から選べる(同軸で縦のばらつきが約13dB→3〜6dB)。ユニット口径(WAY1〜3・高音域)と振動板材質(単体・ハイブリッド・トライブリッド)も選べる。

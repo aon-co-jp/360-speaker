@@ -46,6 +46,8 @@ copy target\wasm32-unknown-unknown\release\speaker360_sim.wasm ..\web\sim.wasm
 
 [特注・専用設計の製作先を探す(外部検索)](https://www.google.com/search?q=%E3%82%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%83%A1%E3%82%A4%E3%83%89%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC&ie=UTF-8)
 
+[JBL公式: 商品はどこで買えますか(JBL Japan)](https://support.jbl.com/jp/ja/howto/%E5%95%86%E5%93%81%E3%81%AF%E3%81%A9%E3%81%93%E3%81%A7%E8%B2%B7%E3%81%88%E3%81%BE%E3%81%99%E3%81%8B-jbl-japan/000035728.html)
+
 [JBLユニットの購入先を探す(外部検索)](https://www.google.com/search?q=JBL%E3%80%80%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%E8%B3%BC%E5%85%A5&ie=UTF-8)
 
 ## 構成バリエーション(シミュレーターで切替)

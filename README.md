@@ -46,6 +46,8 @@ copy target\wasm32-unknown-unknown\release\speaker360_sim.wasm ..\web\sim.wasm
 
 [特注・専用設計の製作先を探す(外部検索)](https://www.google.com/search?q=%E3%82%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%83%A1%E3%82%A4%E3%83%89%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC&ie=UTF-8)
 
+[JBLユニットの購入先を探す(外部検索)](https://www.google.com/search?q=JBL%E3%80%80%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%E8%B3%BC%E5%85%A5&ie=UTF-8)
+
 ## 構成バリエーション(シミュレーターで切替)
 5WAY / 4WAY(ツィーター+スーパーツィーター統合ハイブリッド)/ 3WAY / 2WAY / **1WAY(ハイブリッドSTw単体=既存スピーカーの上に載せるトッピング用)**。
 WAY3〜5の配置は「別々」「中音+高音を同軸」「3つ同軸」から選べる(同軸で縦のばらつきが約13dB→3〜6dB)。ユニット口径(WAY1〜3・高音域)と振動板材質(単体・ハイブリッド・トライブリッド)も選べる。

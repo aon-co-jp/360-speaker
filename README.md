@@ -72,7 +72,7 @@ copy target\wasm32-unknown-unknown\release\speaker360_sim.wasm ..\web\sim.wasm
 Tang Band、Peerless/Vifa、Accuton、Monacor、Eton、Eminence、Celestion、Beyma、B&C Speakers、Tannoy、パイオニア、Focal(単品)は、今回の検索では取扱店を確認できませんでした(調べ不足の可能性があります。TADは追加の指摘で取扱店が見つかりました)(外部検索リンクを使ってください)。 在庫・価格・販売の可否は各サイトで必ず確認してください。
 
 <!-- SHOPS:START -->
-**毎朝の自動確認(最終 2026-10-26、サイト内検索で確認できたものだけ・自動更新)**
+**毎朝の自動確認(最終 2026-10-27、サイト内検索で確認できたものだけ・自動更新)**
 
 | サイト | 確認できたブランド |
 |---|---|

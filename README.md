@@ -1,3 +1,5 @@
+> Latest translations / 翻訳の最新版: [0-LATEST-TRANSLATIONS.md](0-LATEST-TRANSLATIONS.md)
+
 # 360-speaker
 
 360度全方位 5WAY トールボーイスピーカーの設計案とWebシミュレーター(Rust→WASM)。

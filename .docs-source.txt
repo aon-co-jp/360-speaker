@@ -1,3 +1,3 @@
 source: aon-co-jp/360-speaker
-commit: 6d6bd9bd65c302412393e95e785f026fb51b32be
-updated: 2026-11-24T21:08:51Z
+commit: f76515f1cdbe5e05a91b28e5bdbd12b92ace9b97
+updated: 2026-11-25T04:45:48Z
